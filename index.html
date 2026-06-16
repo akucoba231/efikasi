@@ -196,8 +196,14 @@
             margin-bottom: 20px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
-        video { width: 100%; display: block; }
+        video, .video-kosong { width: 100%; display: block; }
 
+        .video-kosong {
+            background : #fff;
+            text-align: center;
+            padding: 5px 8px;
+            color: #000;
+        }
         /* Accordion */
         .accordion-item {
             margin-bottom: 12px;
@@ -271,7 +277,32 @@
             transition: all 0.2s;
         }
         .btn-back:hover { color: var(--primary); transform: translateX(-5px); }
+        
+        #filter-level {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        #filter-level button {
+            background: #fff;
+            border: none;
+            text-align: center;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            transition: 0.5s;
+        }
 
+        #filter-level button:hover {
+            border-bottom: 3px solid var(--primary);
+            transform: translateY(-2px);
+        }
+
+        @media screen and (max-width: 768px){
+            #filter-level button {
+                padding: 0.5rem 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -302,11 +333,11 @@
                     <i class="fas fa-basketball-ball"></i>
                     <div>Permainan</div>
                 </div>
-                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.2s" onclick="goTo('info-screen', 'Tujuan')">
+                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.2s" onclick="goTo('tujuan-screen', 'Tujuan')">
                     <i class="fas fa-bullseye"></i>
                     <div>Tujuan</div>
                 </div>
-                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.3s" onclick="goTo('info-screen', 'Manfaat')">
+                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.3s" onclick="goTo('manfaat-screen', 'Manfaat')">
                     <i class="fas fa-heartbeat"></i>
                     <div>Manfaat</div>
                 </div>
@@ -328,6 +359,8 @@
         <div id="permainan-screen" class="screen">
             <button class="btn-back" onclick="goTo('beranda-screen')"><i class="fas fa-arrow-left"></i> Kembali</button>
             <h2 class="animate__animated animate__fadeInLeft" style="margin-bottom: 20px; color: var(--dark);">Daftar Permainan</h2>
+            <div id="filter-level">
+            </div>
             <div id="game-list-container">
                 </div>
         </div>
@@ -338,10 +371,14 @@
             <h2 id="detail-judul" class="animate__animated animate__fadeIn" style="font-size: 22px; margin-bottom: 15px; color: var(--dark);">Judul Game</h2>
             
             <div class="video-container animate__animated animate__zoomIn">
-                <video id="detail-video" controls poster="https://via.placeholder.com/400x200?text=Siap+Dipotar...">
+                <!-- <video id="detail-video" controls poster="https://via.placeholder.com/400x200?text=Siap+Dipotar...">
                     <source src="" type="video/mp4">
                     Browser Anda tidak mendukung tag video.
-                </video>
+                </video> -->
+                <iframe id="detail-video" src="" width="100%" height="640px"></iframe>
+                <div class="video-kosong" id="video-kosong">
+                    Video dari permainan ini belum tersedia.
+                </div>
             </div>
 
             <div id="accordion-container" class="animate__animated animate__fadeInUp">
@@ -350,6 +387,17 @@
             <button class="btn-diskusi animate__animated animate__fadeInUp" style="animation-delay: 0.4s;" onclick="bukaFormatDiskusi()">
                 <i class="fas fa-cloud-download-alt" style="margin-right: 5px;"></i> Unduh Format Diskusi
             </button>
+        </div>
+
+        <div id="manfaat-screen" class="screen">
+            <button class="btn-back" onclick="goTo('beranda-screen')"><i class="fas fa-arrow-left"></i> Kembali</button>
+            
+            <h2 class="animate__animated animate__fadeIn" style="font-size: 22px; margin-bottom: 15px; color: var(--dark);">Manfaat Aplikasi</h2>
+            
+
+            <div id="accordion-manfaat" class="animate__animated animate__fadeInUp">
+            </div>
+
         </div>
 
         <div id="info-screen" class="screen">
@@ -361,13 +409,24 @@
             </div>
         </div>
 
+        <div id="tujuan-screen" class="screen">
+            <button class="btn-back" onclick="goTo('beranda-screen')"><i class="fas fa-arrow-left"></i> Kembali</button>
+            <h2 id="info-title" class="animate__animated animate__fadeInDown" style="color: var(--dark);">Tujuan Aplikasi</h2>
+            <div class="animate__animated animate__fadeIn" style="background: rgba(255,255,255,0.8); padding: 30px; border-radius: 15px; text-align: center; margin-top: 20px; backdrop-filter: blur(5px);">
+                
+                <p id="isi-text" style="color: var(--secondary); font-weight: 300;">Halaman ini sedang disiapkan.</p>
+            </div>
+        </div>
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script type="text/javascript" src="dataPermainan.js"></script>
+    <script type="text/javascript" src="tujuanManfaat.js"></script>
     <script>
         new WOW().init();
 
-        let daftar_permainan = [
+        /*let daftar_permainan = [
             {
                 "id_permainan": "G001",
                 "nama_permainan": "Bola Basket: Dasar Lay-up",
@@ -403,7 +462,7 @@
                 "peralatan": ["Bola Voli", "Cone pembatas"],
                 "contoh_video": "assets/videos/games/voli_passing_bawah.mp4"
             }
-        ];
+        ];*/
 
         let splashTimer;
 
@@ -420,6 +479,22 @@
             if(screenId === 'info-screen') {
                 document.getElementById('info-title').innerText = infoTitle;
             }
+            else if(screenId === "tujuan-screen") {
+                document.getElementById('info-title').innerText = infoTitle;
+                let p = document.getElementById('isi-text')
+                p.innerHTML = tujuan_app;
+                p.style.color = "#000";
+
+            }
+            else if(screenId === "manfaat-screen"){
+                let accordionManfaat = document.getElementById('accordion-manfaat');
+                let keys = Object.keys(manfaat_app);
+                let fa = ["fa-child","fa-chalkboard-user","fa-school"]
+                accordionManfaat.innerHTML = "";
+                for(let n = 0; n < keys.length; ++n){
+                    accordionManfaat.innerHTML += buatAccordion(UCFirst(keys[n]), manfaat_app[keys[n]], fa[n]);
+                }
+            }
         }
 
         splashTimer = setTimeout(() => {
@@ -428,21 +503,29 @@
             }
         }, 3000);
 
-        const containerPermainan = document.getElementById('game-list-container');
-        daftar_permainan.forEach((game, index) => {
-            let delay = index * 0.1; 
-            containerPermainan.innerHTML += `
-                <div class="game-card animate__animated animate__fadeInLeft" style="animation-delay: ${delay}s" onclick="bukaDetail('${game.id_permainan}')">
-                    <span style="font-weight: 600; font-size: 15px; color: var(--dark);">${game.nama_permainan}</span>
-                    <i class="fas fa-arrow-right" style="color: var(--primary); background: rgba(37,99,235,0.1); padding: 8px; border-radius: 50%;"></i>
-                </div>
-            `;
-        });
+        function UCFirst(text){
+            let tmp = text;
+            tmp = tmp.split('');
+            tmp[0] = tmp[0].toUpperCase();
+            tmp = tmp.join('');
+            return tmp;
+        }
 
         function bukaDetail(id) {
             const game = daftar_permainan.find(g => g.id_permainan === id);
             document.getElementById('detail-judul').innerText = game.nama_permainan;
-            document.getElementById('detail-video').src = game.contoh_video;
+            let video = document.getElementById('detail-video');
+            let videoKosong = document.getElementById('video-kosong');
+            if(game.contoh_video == ""){
+                videoKosong.style.display = "block";
+                video.style.display = "none";
+            }
+            else {
+                videoKosong.style.display = "none";
+                video.style.display = "block";
+                video.src = game.contoh_video;
+                video.load();
+            }
             
             const accordionContainer = document.getElementById('accordion-container');
             accordionContainer.innerHTML = '';
@@ -498,6 +581,47 @@
         function bukaFormatDiskusi() {
             alert("Sistem akan mengunduh Form Diskusi PDF. (Hanya Simulasi)");
         }
+
+        let filterLevel = document.getElementById('filter-level');
+        let btn = `
+            <button onclick="filter_level()">Semua</button>
+        `;
+        level.forEach((item)=>{
+            btn += `
+                <button onclick="filter_level('${item}')">${item}</button>
+            `;
+        })
+        filterLevel.innerHTML = btn;
+
+        function filter_level(level = null){
+            const containerPermainan = document.getElementById('game-list-container');
+            containerPermainan.innerHTML = "";
+            if(!level){    
+                daftar_permainan.forEach((game, index) => {
+                let delay = index * 0.1; 
+                containerPermainan.innerHTML += `
+                    <div class="game-card animate__animated animate__fadeInLeft" style="animation-delay: ${delay}s" onclick="bukaDetail('${game.id_permainan}')">
+                        <span style="font-weight: 600; font-size: 15px; color: var(--dark);">${game.nama_permainan} (${game.level})</span>
+                        <i class="fas fa-arrow-right" style="color: var(--primary); background: rgba(37,99,235,0.1); padding: 8px; border-radius: 50%;"></i>
+                    </div>
+                    `;
+                });
+
+            }
+            else {
+                let tmp = daftar_permainan.filter((item)=> item.level == level);
+                tmp.forEach((game, index) => {
+                let delay = index * 0.1; 
+                containerPermainan.innerHTML += `
+                    <div class="game-card animate__animated animate__fadeInLeft" style="animation-delay: ${delay}s" onclick="bukaDetail('${game.id_permainan}')">
+                        <span style="font-weight: 600; font-size: 15px; color: var(--dark);">${game.nama_permainan} (${game.level})</span>
+                        <i class="fas fa-arrow-right" style="color: var(--primary); background: rgba(37,99,235,0.1); padding: 8px; border-radius: 50%;"></i>
+                    </div>
+                    `;
+                });                
+            }
+        }
+        filter_level();
     </script>
 </body>
 </html>
