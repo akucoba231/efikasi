@@ -303,6 +303,35 @@
                 padding: 0.5rem 1rem;
             }
         }
+
+        /* Footer Kredensial */
+        .app-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-bottom: 20px;
+            font-size: 12px;
+            color: var(--secondary);
+        }
+        .app-footer strong {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+	.logo-container {
+		width : 90%;
+		margin: 0 auto;
+	}
+
+	.logo-container img {
+		width: 100%
+	}
+	.small {
+		width: 70%
+	}	
+	.no-margin {
+		margin : 0 auto;
+	}
     </style>
 </head>
 <body>
@@ -313,8 +342,10 @@
         
         <div id="splash-screen" class="screen active" onclick="goTo('beranda-screen')">
             <div class="animate__animated animate__bounceInDown">
-                <i class="fas fa-running logo-icon"></i>
-                <h1 class="animate__animated animate__pulse animate__infinite">Efikasi PJOK</h1>
+                <div class="logo-container">
+			<img src="logo.png" alt="logo-apps" />
+		</div>
+                <h1 class="animate__animated animate__pulse animate__infinite">Permainan Efikasi Diri</h1>
                 <p>Media Belajar Olahraga Interaktif</p>
                 <div style="margin-top: 50px; opacity: 0.9; background: rgba(0,0,0,0.25); padding: 10px 20px; border-radius: 30px; font-size: 12px; display: inline-block;">
                     <i class="fas fa-hand-pointer animate__animated animate__bounce animate__infinite"></i> Ketuk untuk masuk
@@ -324,8 +355,11 @@
 
         <div id="beranda-screen" class="screen">
             <div class="app-header animate__animated animate__fadeInDown">
-                <h2>Beranda Utama</h2>
-                <p style="color: var(--secondary); font-size: 14px;">Mari mulai bergerak hari ini!</p>
+		<div class="logo-container small">
+			<img src="logo.png" alt="logo-apps" />
+		</div>
+                <h2 class="no-margin">Beranda Utama</h2>
+                <p class="no-margin" style="color: var(--secondary); font-size: 14px;">Mari mulai bergerak hari ini!</p>
             </div>
             
             <div class="menu-grid">
@@ -341,7 +375,7 @@
                     <i class="fas fa-heartbeat"></i>
                     <div>Manfaat</div>
                 </div>
-                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.4s" onclick="goTo('info-screen', 'Panduan')">
+                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.4s" onclick="goTo('panduan-screen')">
                     <i class="fas fa-book-open"></i>
                     <div>Panduan</div>
                 </div>
@@ -412,6 +446,105 @@
 
         </div>
 
+        <div id="panduan-screen" class="screen">
+            <button class="btn-back" onclick="goTo('beranda-screen')"><i class="fas fa-arrow-left"></i> Kembali</button>
+            
+            <h2 class="animate__animated animate__fadeIn" style="font-size: 22px; margin-bottom: 15px; color: var(--dark);">Panduan Penggunaan</h2>
+            
+            <div id="accordion-panduan" class="animate__animated animate__fadeInUp">
+                <!-- Item 1: Permainan -->
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAccordion(this)">
+                        <span><i class="fas fa-basketball-ball" style="color:var(--primary); margin-right:10px; width: 20px; text-align: center;"></i> Permainan</span>
+                        <i class="fas fa-chevron-down" style="color: var(--secondary); font-size: 12px;"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Menu ini menampilkan seluruh daftar permainan edukasi PJOK yang tersedia.</li>
+                            <li>Gunakan tombol <b>Filter Level</b> (Semua, Mudah, Sedang, Sulit) di bagian atas untuk menyaring daftar permainan sesuai tingkat kesulitan.</li>
+                            <li>Ketuk salah satu kartu nama permainan untuk masuk ke halaman <b>Detail Permainan</b>.</li>
+                            <li><b>Di dalam Detail Permainan:</b>
+                                <ul>
+                                    <li><b>Pemutar Video</b>: Menampilkan peragaan tata cara permainan secara visual (jika tersedia).</li>
+                                    <li><b>Informasi Lengkap</b>: Ketuk <i>dropdown</i> (Peraturan, Cara Bermain, Alat yang Dibutuhkan) untuk membaca panduan teks secara rinci.</li>
+                                    <li><b>Format Diskusi</b>: Ketuk tombol hijau di bagian paling bawah untuk mengunduh lembar aktivitas dan diskusi.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Item 2: Tujuan -->
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAccordion(this)">
+                        <span><i class="fas fa-bullseye" style="color:var(--primary); margin-right:10px; width: 20px; text-align: center;"></i> Tujuan</span>
+                        <i class="fas fa-chevron-down" style="color: var(--secondary); font-size: 12px;"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Menu ini memuat informasi mengenai sasaran, latar belakang, dan capaian kompetensi dasar dari pembuatan aplikasi Efikasi PJOK ini.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Item 3: Manfaat -->
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAccordion(this)">
+                        <span><i class="fas fa-heartbeat" style="color:var(--primary); margin-right:10px; width: 20px; text-align: center;"></i> Manfaat</span>
+                        <i class="fas fa-chevron-down" style="color: var(--secondary); font-size: 12px;"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Menu ini berisi rincian dampak positif penggunaan media pembelajaran ini.</li>
+                            <li>Manfaat dikelompokkan menjadi tiga bagian: manfaat untuk <b>Siswa</b>, manfaat untuk <b>Guru</b>, dan manfaat bagi <b>Sekolah</b>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Item 4: Panduan -->
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAccordion(this)">
+                        <span><i class="fas fa-book-open" style="color:var(--primary); margin-right:10px; width: 20px; text-align: center;"></i> Panduan</span>
+                        <i class="fas fa-chevron-down" style="color: var(--secondary); font-size: 12px;"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Menu yang sedang Anda buka saat ini.</li>
+                            <li>Berisi petunjuk dan tata cara penggunaan seluruh fitur yang ada di dalam aplikasi.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Item 5: Pengaturan -->
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAccordion(this)">
+                        <span><i class="fas fa-cog" style="color:var(--primary); margin-right:10px; width: 20px; text-align: center;"></i> Pengaturan</span>
+                        <i class="fas fa-chevron-down" style="color: var(--secondary); font-size: 12px;"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Menu ini direncanakan untuk mengatur konfigurasi aplikasi di masa mendatang.</li>
+                            <li>Saat ini, halaman pengaturan masih dalam tahap persiapan.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Item 6: Keluar -->
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAccordion(this)">
+                        <span><i class="fas fa-power-off" style="color:var(--primary); margin-right:10px; width: 20px; text-align: center;"></i> Keluar</span>
+                        <i class="fas fa-chevron-down" style="color: var(--secondary); font-size: 12px;"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Gunakan menu ini untuk menutup sesi dan kembali ke <i>Splash Screen</i> awal aplikasi.</li>
+                            <li>Tindakan ini aman dan sistem akan meminta konfirmasi Anda terlebih dahulu sebelum benar-benar keluar.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="info-screen" class="screen">
             <button class="btn-back" onclick="goTo('beranda-screen')"><i class="fas fa-arrow-left"></i> Kembali</button>
             <h2 id="info-title" class="animate__animated animate__fadeInDown" style="color: var(--dark);">Judul Info</h2>
@@ -433,7 +566,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-    <script type="text/javascript" src="dataPermainan.js"></script>
+    <script type="text/javascript" src="dataPermainan_baru.js"></script>
     <script type="text/javascript" src="tujuanManfaat.js"></script>
     <script>
         new WOW().init();
@@ -509,11 +642,13 @@
             }
         }
 
+	function splashActive(){
         splashTimer = setTimeout(() => {
             if(document.getElementById('splash-screen').classList.contains('active')){
                 goTo('beranda-screen');
             }
-        }, 3000);
+        }, 5000);
+	}
 
         function UCFirst(text){
             let tmp = text;
@@ -637,6 +772,16 @@
             }
         }
         filter_level();
+
+        // Tambahkan footer kredensial ke semua screen kecuali splash-screen
+        const footerHTML = `
+            <div class="app-footer animate__animated animate__fadeIn">
+                &copy; 2026 Permainan Efikasi Diri - <strong>Irham Shagira, S. Pd</strong>
+            </div>
+        `;
+        document.querySelectorAll('.screen:not(#splash-screen)').forEach(screen => {
+            screen.insertAdjacentHTML('beforeend', footerHTML);
+        });
     </script>
 </body>
 </html>
