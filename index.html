@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     
     <style>
-                /* CSS Dasar & Tema - Diperbarui untuk SMP (Lebih dinamis & sporty) */
+        /* CSS Dasar & Tema - Diperbarui untuk SMP (Lebih dinamis & sporty) */
         :root {
             --primary: #ffc30f;    /* Kuning terang/Gold dari logo */
             --primary-dark: #e0aa0d;
@@ -21,13 +21,98 @@
             --dark: #0f0f2d;       /* Biru Dongker/Navy pekat dari logo */
             --light: #f8fafc;
             --accent: #2563eb;
+
+            /* Tema & Komponen Default (Light) */
+            --card-bg: #ffffff;
+            --card-border: rgba(15, 15, 45, 0.06);
+            --card-shadow: rgba(15, 15, 45, 0.04);
+            --text-title: #0f0f2d;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --app-bg: linear-gradient(-45deg, #f8fafc, #f1f5f9, #ffffff, #e2e8f0);
+            --btn-dark-bg: #0f0f2d;
+            --btn-dark-text: #ffc30f;
+            --icon-dark: #0f0f2d;
+            --ctrl-bg: rgba(15, 15, 45, 0.04);
+            --filter-bg: rgba(255, 255, 255, 0.65);
+            --font-scale: 1;
+        }
+
+        /* 1. Tema Dark */
+        [data-theme="dark"] {
+            --primary: #ffc30f;
+            --primary-dark: #e0aa0d;
+            --secondary: #94a3b8;
+            --dark: #f8fafc;
+            --light: #0d0d1e;
+            --accent: #60a5fa;
+
+            --card-bg: #181832;
+            --card-border: rgba(255, 255, 255, 0.08);
+            --card-shadow: rgba(0, 0, 0, 0.35);
+            --text-title: #ffffff;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --app-bg: linear-gradient(-45deg, #090918, #0f0f29, #141438, #0b0b1f);
+            --btn-dark-bg: #ffc30f;
+            --btn-dark-text: #0f0f2d;
+            --icon-dark: #0f0f2d;
+            --ctrl-bg: rgba(255, 255, 255, 0.06);
+            --filter-bg: rgba(24, 24, 50, 0.85);
+        }
+
+        /* 2. Tema Blue */
+        [data-theme="blue"] {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --secondary: #64748b;
+            --dark: #082f49;
+            --light: #f0f9ff;
+            --accent: #0284c7;
+
+            --card-bg: #ffffff;
+            --card-border: rgba(2, 132, 199, 0.12);
+            --card-shadow: rgba(2, 132, 199, 0.08);
+            --text-title: #082f49;
+            --text-body: #1e293b;
+            --text-muted: #475569;
+            --app-bg: linear-gradient(-45deg, #e0f2fe, #f0f9ff, #ffffff, #bae6fd);
+            --btn-dark-bg: #0284c7;
+            --btn-dark-text: #ffffff;
+            --icon-dark: #ffffff;
+            --ctrl-bg: rgba(2, 132, 199, 0.06);
+            --filter-bg: rgba(255, 255, 255, 0.7);
+        }
+
+        /* 3. Tema Orange */
+        [data-theme="orange"] {
+            --primary: #f97316;
+            --primary-dark: #ea580c;
+            --secondary: #78716c;
+            --dark: #431407;
+            --light: #fff7ed;
+            --accent: #ea580c;
+
+            --card-bg: #ffffff;
+            --card-border: rgba(249, 115, 22, 0.12);
+            --card-shadow: rgba(249, 115, 22, 0.08);
+            --text-title: #431407;
+            --text-body: #292524;
+            --text-muted: #78716c;
+            --app-bg: linear-gradient(-45deg, #fff7ed, #ffedd5, #ffffff, #fed7aa);
+            --btn-dark-bg: #f97316;
+            --btn-dark-text: #ffffff;
+            --icon-dark: #ffffff;
+            --ctrl-bg: rgba(249, 115, 22, 0.06);
+            --filter-bg: rgba(255, 255, 255, 0.7);
         }
 
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif; 
             background: var(--light);
-            color: #333;
+            color: var(--text-body);
+            transition: background 0.3s;
         }
 
         .overlay {
@@ -35,6 +120,17 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(15, 15, 45, 0.85); /* Dark navy overlay */
             z-index: -1;
+            transition: background 0.3s;
+        }
+
+        [data-theme="dark"] .overlay {
+            background: rgba(5, 5, 15, 0.95);
+        }
+        [data-theme="blue"] .overlay {
+            background: rgba(8, 47, 73, 0.85);
+        }
+        [data-theme="orange"] .overlay {
+            background: rgba(67, 20, 7, 0.85);
         }
 
         @keyframes gradientMove {
@@ -53,10 +149,13 @@
             display: flex;
             flex-direction: column;
             
-            background: linear-gradient(-45deg, #f8fafc, #f1f5f9, #ffffff, #e2e8f0);
+            background: var(--app-bg);
             background-size: 400% 400%;
             animation: gradientMove 15s ease infinite;
             z-index: 1; 
+            color: var(--text-body);
+            font-size: 1em;
+            transition: background 0.3s, color 0.3s;
         }
 
         #app::before {
@@ -120,11 +219,11 @@
             display: flex;
         }
 
-        /* Splash Screen - Lebih Modern & Bold */
+        /* Splash Screen */
         #splash-screen {
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, var(--dark) 0%, #1a1a4b 100%);
+            background: linear-gradient(135deg, #0f0f2d 0%, #1a1a4b 100%);
             color: white;
             text-align: center;
             cursor: pointer;
@@ -132,8 +231,8 @@
             z-index: 10;
         }
 
-        #splash-screen h1 { font-weight: 800; font-size: 32px; margin-bottom: 5px; color: var(--primary); letter-spacing: -0.5px;}
-        #splash-screen p { font-weight: 400; font-size: 15px; opacity: 0.9; }
+        #splash-screen h1 { font-weight: 800; font-size: 2em; margin-bottom: 5px; color: var(--primary); letter-spacing: -0.5px;}
+        #splash-screen p { font-weight: 400; font-size: 0.95em; opacity: 0.9; }
 
         .app-header {
             text-align: center;
@@ -141,7 +240,10 @@
             border-bottom: 2px dashed rgba(15, 15, 45, 0.1);
             margin-bottom: 25px;
         }
-        .app-header h2 { font-weight: 800; color: var(--dark); margin-bottom: 5px; font-size: 26px; letter-spacing: -0.5px;}
+        [data-theme="dark"] .app-header {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+        .app-header h2 { font-weight: 800; color: var(--text-title); margin-bottom: 5px; font-size: 1.6em; letter-spacing: -0.5px;}
 
         /* Menu Beranda - Gaya Aplikasi Gaming/Sport */
         .menu-grid {
@@ -151,18 +253,18 @@
             padding-top: 5px;
         }
         .menu-btn {
-            background: white; 
-            border: 2px solid rgba(15,15,45,0.05);
+            background: var(--card-bg); 
+            border: 2px solid var(--card-border);
             border-radius: 20px; 
             padding: 20px 10px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 10px 20px rgba(15, 15, 45, 0.04);
+            box-shadow: 0 10px 20px var(--card-shadow);
             font-weight: 700;
-            color: var(--dark);
+            color: var(--text-title);
             text-transform: uppercase;
-            font-size: 12px;
+            font-size: 0.75em;
             letter-spacing: 0.5px;
         }
         .menu-btn:hover {
@@ -171,8 +273,8 @@
             box-shadow: 0 15px 30px rgba(255, 195, 15, 0.2);
         }
         .menu-btn i {
-            font-size: 28px;
-            color: var(--dark);
+            font-size: 1.75em;
+            color: var(--icon-dark);
             margin-bottom: 12px;
             display: inline-block;
             background: var(--primary);
@@ -189,14 +291,19 @@
             box-shadow: 0 8px 15px rgba(239, 68, 68, 0.3);
         }
 
-        /* List Permainan */
+        /* List Permainan (Mode 1 Kolom / Daftar) */
+        .game-list-container {
+            display: flex;
+            flex-direction: column;
+        }
         .game-card {
-            background: white;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-left: 6px solid var(--primary);
             padding: 18px;
             margin-bottom: 15px;
             border-radius: 16px;
-            box-shadow: 0 8px 20px rgba(15,15,45,0.04);
+            box-shadow: 0 8px 20px var(--card-shadow);
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -205,24 +312,96 @@
         }
         .game-card:hover { 
             transform: translateX(5px);
-            box-shadow: 0 10px 25px rgba(15,15,45,0.08);
-            border-left-color: var(--dark);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-left-color: var(--btn-dark-bg);
         }
         .game-card .fas.fa-arrow-right {
-            background: var(--dark);
-            color: var(--primary);
+            background: var(--btn-dark-bg);
+            color: var(--btn-dark-text);
             padding: 10px;
             border-radius: 50%;
             transition: transform 0.3s ease;
+            font-size: 0.8em;
         }
         .game-card:hover .fas.fa-arrow-right {
             transform: translateX(3px);
         }
 
+        /* Grid Permainan (Mode 2 Kolom / Kotak) */
+        .game-grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .game-card-grid {
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            border-radius: 20px;
+            padding: 20px 12px 16px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 8px 18px var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 155px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .game-card-grid:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 14px 28px rgba(0,0,0,0.1);
+        }
+        .game-card-grid .game-grid-icon i {
+            font-size: 1.6em;
+            color: var(--icon-dark);
+            background: var(--primary);
+            width: 52px;
+            height: 52px;
+            line-height: 52px;
+            border-radius: 16px;
+            display: inline-block;
+            margin-bottom: 12px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .game-card-grid:hover .game-grid-icon i {
+            transform: scale(1.1) rotate(-6deg);
+        }
+        .game-card-grid .game-grid-title {
+            font-weight: 700;
+            font-size: 0.82em;
+            color: var(--text-title);
+            line-height: 1.35;
+            margin-bottom: 10px;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .game-card-grid .game-grid-badge {
+            font-size: 0.68em;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 12px;
+            background: rgba(15, 15, 45, 0.06);
+            color: var(--text-title);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        [data-theme="dark"] .game-card-grid .game-grid-badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary);
+        }
+
         /* Video Player */
         .video-container {
             width: 100%;
-            background: var(--dark);
+            background: #0f0f2d;
             border-radius: 16px;
             overflow: hidden;
             margin-bottom: 20px;
@@ -232,11 +411,12 @@
         video, .video-kosong { width: 100%; display: block; }
 
         .video-kosong {
-            background : #f1f5f9;
+            background: var(--card-bg);
             text-align: center;
             padding: 20px 10px;
-            color: var(--secondary);
+            color: var(--text-muted);
             font-weight: 600;
+            font-size: 0.9em;
         }
         
         /* Accordion */
@@ -244,9 +424,9 @@
             margin-bottom: 12px;
             border-radius: 16px;
             overflow: hidden;
-            background: white;
-            box-shadow: 0 4px 12px rgba(15,15,45,0.03);
-            border: 1px solid rgba(15,15,45,0.05);
+            background: var(--card-bg);
+            box-shadow: 0 4px 12px var(--card-shadow);
+            border: 1px solid var(--card-border);
         }
         .accordion-btn {
             width: 100%;
@@ -254,9 +434,9 @@
             background: transparent;
             border: none;
             text-align: left;
-            font-size: 15px;
+            font-size: 0.95em;
             font-weight: 700;
-            color: var(--dark);
+            color: var(--text-title);
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -265,13 +445,13 @@
         .accordion-btn:hover { background: rgba(15, 15, 45, 0.02); }
         .accordion-btn i.fa-chevron-down, .accordion-btn i.fa-chevron-up {
             background: rgba(255,195,15,0.3);
-            color: var(--dark);
+            color: var(--text-title);
             width: 28px; height: 28px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 12px;
+            font-size: 0.75em;
             transition: all 0.3s;
         }
         .accordion-content {
@@ -280,25 +460,25 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
-            font-size: 14px;
-            color: #475569;
+            font-size: 0.875em;
+            color: var(--text-body);
             line-height: 1.6;
         }
         .accordion-content ul { padding-left: 20px; margin-top: 5px; margin-bottom: 15px;}
         .accordion-content li { margin-bottom: 8px; }
-        .accordion-content li b { color: var(--dark); }
+        .accordion-content li b { color: var(--text-title); }
 
         /* Tombol Unduh Format Diskusi */
         .btn-diskusi {
             display: block;
             width: 100%;
             padding: 16px;
-            background: var(--dark);
-            color: var(--primary);
+            background: var(--btn-dark-bg);
+            color: var(--btn-dark-text);
             text-align: center;
             border: none;
             border-radius: 16px;
-            font-size: 15px;
+            font-size: 0.95em;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -308,33 +488,33 @@
             transition: all 0.3s;
         }
         .btn-diskusi:hover { 
-            background: #1a1a4b; 
+            filter: brightness(1.1);
             transform: translateY(-3px);
             box-shadow: 0 15px 25px rgba(15, 15, 45, 0.3);
         }
 
         /* Tombol Kembali */
         .btn-back {
-            background: white;
-            border: 2px solid rgba(15,15,45,0.05);
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
             border-radius: 30px;
             padding: 8px 16px;
-            color: var(--dark);
-            font-size: 13px;
+            color: var(--text-title);
+            font-size: 0.8125em;
             font-weight: 700;
             cursor: pointer;
             margin-bottom: 20px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 4px 10px rgba(15,15,45,0.04);
+            box-shadow: 0 4px 10px var(--card-shadow);
             transition: all 0.2s;
             align-self: flex-start;
         }
         .btn-back:hover { 
-            background: var(--dark);
-            color: var(--primary); 
-            border-color: var(--dark);
+            background: var(--btn-dark-bg);
+            color: var(--btn-dark-text); 
+            border-color: var(--btn-dark-bg);
             transform: translateX(-5px); 
         }
         
@@ -343,10 +523,10 @@
             justify-content: space-between;
             gap: 10px;
             margin-bottom: 1.5rem;
-            background: rgba(255,255,255,0.6);
+            background: var(--filter-bg);
             padding: 6px;
             border-radius: 16px;
-            box-shadow: 0 4px 10px rgba(15,15,45,0.03);
+            box-shadow: 0 4px 10px var(--card-shadow);
         }
         #filter-level button {
             flex: 1;
@@ -358,14 +538,14 @@
             transition: 0.3s;
             font-weight: 700;
             color: var(--secondary);
-            font-size: 13px;
+            font-size: 0.8125em;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         #filter-level button.active, #filter-level button:hover {
-            background: var(--dark);
-            color: var(--primary);
+            background: var(--btn-dark-bg);
+            color: var(--btn-dark-text);
             box-shadow: 0 4px 10px rgba(15,15,45,0.15);
             transform: translateY(-2px);
         }
@@ -373,8 +553,185 @@
         @media screen and (max-width: 768px){
             #filter-level button {
                 padding: 0.6rem 0.5rem;
-                font-size: 11px;
+                font-size: 0.7em;
             }
+        }
+
+        /* Halaman Pengaturan */
+        .settings-list {
+            margin-top: 5px;
+        }
+
+        .setting-card {
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            border-radius: 18px;
+            padding: 16px 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 8px 20px var(--card-shadow);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .setting-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        .setting-label {
+            font-size: 0.9em;
+            font-weight: 700;
+            color: var(--text-title);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .setting-label i {
+            color: var(--primary);
+            font-size: 1.15em;
+            width: 22px;
+            text-align: center;
+        }
+
+        .setting-control {
+            display: flex;
+            align-items: center;
+        }
+
+        /* 1. Kontrol Ukuran Font */
+        .font-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--ctrl-bg);
+            padding: 4px;
+            border-radius: 14px;
+            border: 1px solid var(--card-border);
+        }
+
+        .font-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-title);
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .font-btn:hover {
+            background: var(--primary);
+            color: var(--icon-dark);
+            transform: scale(1.05);
+        }
+
+        .font-val {
+            min-width: 32px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.95em;
+            color: var(--text-title);
+        }
+
+        /* 2. Kontrol Tema (Warna Latar Belakang) */
+        .theme-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+        }
+
+        .theme-circle:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-circle.active {
+            border: 2px solid #10b981 !important;
+            outline: 2px solid rgba(16, 185, 129, 0.35);
+            transform: scale(1.15);
+        }
+
+        .theme-btn-light {
+            background: linear-gradient(135deg, #ffffff 45%, #ffc30f 45%);
+            border: 1px solid #cbd5e1;
+        }
+
+        .theme-btn-dark {
+            background: #0f0f2d;
+            border: 1px solid #334155;
+        }
+
+        .theme-btn-blue {
+            background: #0284c7;
+            border: 1px solid #0369a1;
+        }
+
+        .theme-btn-orange {
+            background: #f97316;
+            border: 1px solid #c2410c;
+        }
+
+        /* 3. Kontrol Perubahan Tampilan */
+        .toggle-mode-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--ctrl-bg);
+            padding: 5px 8px;
+            border-radius: 14px;
+            cursor: pointer;
+            border: 1px solid var(--card-border);
+            user-select: none;
+            transition: all 0.2s;
+        }
+
+        .toggle-mode-container:hover {
+            border-color: var(--primary);
+        }
+
+        .mode-pill {
+            padding: 5px 12px;
+            border-radius: 10px;
+            font-size: 0.78em;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: all 0.25s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .mode-pill.active {
+            background: var(--btn-dark-bg);
+            color: var(--btn-dark-text);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+        }
+
+        .mode-divider {
+            font-size: 0.75em;
+            font-weight: 800;
+            color: var(--text-muted);
+            opacity: 0.5;
         }
 
         /* Footer Kredensial */
@@ -382,14 +739,17 @@
             text-align: center;
             margin-top: auto;
             padding: 30px 10px 20px 10px;
-            font-size: 12px;
+            font-size: 0.75em;
             color: var(--secondary);
         }
         .app-footer strong {
-            color: var(--dark);
+            color: var(--text-title);
             font-weight: 700;
-            font-size: 13px;
+            font-size: 1.05em;
             letter-spacing: 0.5px;
+        }
+        .pointer {
+            cursor: pointer;
         }
     </style>
 </head>
@@ -451,7 +811,7 @@
 
         <div id="permainan-screen" class="screen">
             <button class="btn-back" onclick="goTo('beranda-screen')"><i class="fas fa-arrow-left"></i> Kembali</button>
-            <h2 class="animate__animated animate__fadeInLeft" style="margin-bottom: 20px; color: var(--dark);">Daftar Permainan</h2>
+            <h2 class="animate__animated animate__fadeInLeft" style="margin-bottom: 20px; font-size: 1.375em; color: var(--text-title);">Daftar Permainan</h2>
             <div id="filter-level">
             </div>
             <div id="game-list-container">
@@ -461,7 +821,7 @@
         <div id="detail-screen" class="screen">
             <button class="btn-back" onclick="goTo('permainan-screen')"><i class="fas fa-arrow-left"></i> Permainan</button>
             
-            <h2 id="detail-judul" class="animate__animated animate__fadeIn" style="font-size: 22px; margin-bottom: 15px; color: var(--dark);">Judul Game</h2>
+            <h2 id="detail-judul" class="animate__animated animate__fadeIn" style="font-size: 1.375em; margin-bottom: 15px; color: var(--text-title);">Judul Game</h2>
             
             <div class="video-container animate__animated animate__zoomIn">
                 <!-- <video id="detail-video" controls poster="https://via.placeholder.com/400x200?text=Siap+Dipotar...">
@@ -497,7 +857,7 @@
         <div id="manfaat-screen" class="screen">
             <button class="btn-back" onclick="goTo('beranda-screen')"><i class="fas fa-arrow-left"></i> Kembali</button>
             
-            <h2 class="animate__animated animate__fadeIn" style="font-size: 22px; margin-bottom: 15px; color: var(--dark);">Manfaat Aplikasi</h2>
+            <h2 class="animate__animated animate__fadeIn" style="font-size: 1.375em; margin-bottom: 15px; color: var(--text-title);">Manfaat Aplikasi</h2>
             
 
             <div id="accordion-manfaat" class="animate__animated animate__fadeInUp">
@@ -508,7 +868,7 @@
         <div id="panduan-screen" class="screen">
             <button class="btn-back" onclick="goTo('beranda-screen')"><i class="fas fa-arrow-left"></i> Kembali</button>
             
-            <h2 class="animate__animated animate__fadeIn" style="font-size: 22px; margin-bottom: 15px; color: var(--dark);">Panduan Penggunaan</h2>
+            <h2 class="animate__animated animate__fadeIn" style="font-size: 1.375em; margin-bottom: 15px; color: var(--text-title);">Panduan Penggunaan</h2>
             
             <div id="accordion-panduan" class="animate__animated animate__fadeInUp">
                 <!-- Item 1: Permainan -->
@@ -606,19 +966,58 @@
 
         <div id="info-screen" class="screen">
             <button class="btn-back" onclick="goTo('beranda-screen')"><i class="fas fa-arrow-left"></i> Kembali</button>
-            <h2 id="info-title" class="animate__animated animate__fadeInDown" style="color: var(--dark);">Judul Info</h2>
-            <div class="animate__animated animate__fadeIn" style="background: rgba(255,255,255,0.8); padding: 30px; border-radius: 15px; text-align: center; margin-top: 20px; backdrop-filter: blur(5px);">
-                <i class="fas fa-tools animate__animated animate__swing animate__infinite" style="font-size: 60px; color: var(--primary); margin-bottom: 20px; display: inline-block;"></i>
-                <p style="color: var(--secondary); font-weight: 600;">Halaman ini sedang disiapkan.</p>
+            <h2 id="info-title" class="animate__animated animate__fadeInDown" style="color: var(--text-title); margin-bottom: 20px;">Pengaturan</h2>
+            
+            <div class="settings-list animate__animated animate__fadeIn">
+                <!-- 1. Ukuran Font -->
+                <div class="setting-card">
+                    <div class="setting-label">
+                        <i class="fas fa-text-height"></i>
+                        <span>Ukuran Font</span>
+                    </div>
+                    <div class="setting-control font-control">
+                        <button type="button" class="font-btn" onclick="ubahUkuranFont(-0.1)" title="Perkecil">-</button>
+                        <span class="font-val" id="font-val-display">1</span>
+                        <button type="button" class="font-btn" onclick="ubahUkuranFont(0.1)" title="Perbesar">+</button>
+                    </div>
+                </div>
+
+                <!-- 2. Tema Latar Belakang -->
+                <div class="setting-card pointer" onclick="toggleThema()">
+                    <div class="setting-label">
+                        <i class="fas fa-palette"></i>
+                        <span>Warna Latar Belakang (Tema)</span>
+                    </div>
+                    <div class="setting-control theme-control">
+                        <div class="theme-circle theme-btn-light active" id="theme-circle-light" onclick="pilihTema('light')" title="Light"></div>
+                        <div class="theme-circle theme-btn-dark" id="theme-circle-dark" onclick="pilihTema('dark')" title="Dark"></div>
+                        <div class="theme-circle theme-btn-blue" id="theme-circle-blue" onclick="pilihTema('blue')" title="Blue"></div>
+                        <div class="theme-circle theme-btn-orange" id="theme-circle-orange" onclick="pilihTema('orange')" title="Orange"></div>
+                    </div>
+                </div>
+
+                <!-- 3. Perubahan Tampilan Menu Permainan -->
+                <div class="setting-card pointer"  onclick="toggleModeTampilan()">
+                    <div class="setting-label">
+                        <i class="fas fa-layer-group"></i>
+                        <span>Perubahan Tampilan</span>
+                    </div>
+                    <div class="setting-control">
+                        <div class="toggle-mode-container" title="Ketuk untuk beralih mode">
+                            <span class="mode-pill active" id="pill-daftar"><i class="fas fa-bars"></i> Daftar</span>
+                            <span class="mode-divider">||</span>
+                            <span class="mode-pill" id="pill-kotak"><i class="fas fa-th-large"></i> Kotak</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div id="tujuan-screen" class="screen">
             <button class="btn-back" onclick="goTo('beranda-screen')"><i class="fas fa-arrow-left"></i> Kembali</button>
-            <h2 id="info-title" class="animate__animated animate__fadeInDown" style="color: var(--dark);">Tujuan Aplikasi</h2>
-            <div class="animate__animated animate__fadeIn" style="background: rgba(255,255,255,0.8); padding: 30px; border-radius: 15px; text-align: center; margin-top: 20px; backdrop-filter: blur(5px);">
-                
-                <p id="isi-text" style="color: var(--secondary); font-weight: 300;">Halaman ini sedang disiapkan.</p>
+            <h2 id="tujuan-title" class="animate__animated animate__fadeInDown" style="color: var(--text-title);">Tujuan Aplikasi</h2>
+            <div class="animate__animated animate__fadeIn" style="background: var(--card-bg); padding: 30px; border-radius: 15px; text-align: center; margin-top: 20px; backdrop-filter: blur(5px); border: 1px solid var(--card-border); box-shadow: 0 4px 12px var(--card-shadow);">
+                <p id="isi-text" style="color: var(--text-body); font-weight: 300;">Halaman ini sedang disiapkan.</p>
             </div>
         </div>
 
@@ -681,14 +1080,17 @@
             window.scrollTo(0, 0);
 
             if(screenId === 'info-screen') {
-                document.getElementById('info-title').innerText = infoTitle;
+                document.getElementById('info-title').innerText = infoTitle || 'Pengaturan';
+                syncPengaturanUI();
             }
             else if(screenId === "tujuan-screen") {
-                document.getElementById('info-title').innerText = infoTitle;
-                let p = document.getElementById('isi-text')
-                p.innerHTML = tujuan_app;
-                p.style.color = "#000";
-
+                const tujuanTitle = document.getElementById('tujuan-title') || document.getElementById('info-title');
+                if (tujuanTitle) tujuanTitle.innerText = infoTitle || 'Tujuan Aplikasi';
+                let p = document.getElementById('isi-text');
+                if (p) {
+                    p.innerHTML = tujuan_app;
+                    p.style.color = "var(--text-body)";
+                }
             }
             else if(screenId === "manfaat-screen"){
                 let accordionManfaat = document.getElementById('accordion-manfaat');
@@ -791,9 +1193,131 @@
             alert("Sistem akan mengunduh Form Diskusi PDF. (Hanya Simulasi)");
         }
 
+        // ==================== PENGATURAN APLIKASI ====================
+        let appFontScale = parseFloat(localStorage.getItem('efikasi_font_scale')) || 1.0;
+        let appTheme = localStorage.getItem('efikasi_theme') || 'light';
+        let appLayoutMode = localStorage.getItem('efikasi_layout_mode') || 'daftar';
+
+        function ubahUkuranFont(delta) {
+            let baru = Math.round((appFontScale + delta) * 10) / 10;
+            if (baru < 0.8) baru = 0.8;
+            if (baru > 1.3) baru = 1.3;
+            appFontScale = baru;
+            localStorage.setItem('efikasi_font_scale', appFontScale);
+            terapkanUkuranFont(appFontScale);
+        }
+
+        function terapkanUkuranFont(scale) {
+            appFontScale = scale;
+            const display = document.getElementById('font-val-display');
+            if (display) {
+                display.innerText = (scale === 1) ? "1" : scale.toFixed(1);
+            }
+            const appEl = document.getElementById('app');
+            if (appEl) {
+                appEl.style.fontSize = scale + 'em';
+                appEl.style.setProperty('--font-scale', scale);
+            }
+        }
+
+        function toggleThema(){
+            let tema = ['light','dark','blue','orange'];
+            let current = localStorage.getItem('efikasi_theme');
+            let indexTema = 0;
+            tema.forEach((item, index)=>{
+                if(item === current){
+                    indexTema = index
+                }
+            });
+            pilihTema(tema[indexTema+1]);
+        }
+
+        function pilihTema(tema) {
+            appTheme = tema;
+            localStorage.setItem('efikasi_theme', appTheme);
+            terapkanTema(appTheme);
+        }
+
+        function terapkanTema(tema) {
+            appTheme = tema;
+            const appEl = document.getElementById('app');
+            if (appEl) {
+                appEl.setAttribute('data-theme', tema);
+            }
+            document.body.setAttribute('data-theme', tema);
+
+            // Perbarui border hijau 2px pada lingkaran tema yang aktif
+            document.querySelectorAll('.theme-circle').forEach(circle => {
+                circle.classList.remove('active');
+            });
+            const activeCircle = document.getElementById('theme-circle-' + tema);
+            if (activeCircle) {
+                activeCircle.classList.add('active');
+            }
+        }
+
+        function toggleModeTampilan() {
+            appLayoutMode = (appLayoutMode === 'daftar') ? 'kotak' : 'daftar';
+            localStorage.setItem('efikasi_layout_mode', appLayoutMode);
+            terapkanModeTampilan(appLayoutMode);
+        }
+
+        function terapkanModeTampilan(mode) {
+            appLayoutMode = mode;
+            const pillDaftar = document.getElementById('pill-daftar');
+            const pillKotak = document.getElementById('pill-kotak');
+            if (pillDaftar && pillKotak) {
+                if (mode === 'kotak') {
+                    pillKotak.classList.add('active');
+                    pillDaftar.classList.remove('active');
+                } else {
+                    pillDaftar.classList.add('active');
+                    pillKotak.classList.remove('active');
+                }
+            }
+            // Re-render daftar permainan jika sudah diinisialisasi
+            if (typeof filter_level === 'function') {
+                filter_level(currentLevelFilter);
+            }
+        }
+
+        function syncPengaturanUI() {
+            const display = document.getElementById('font-val-display');
+            if (display) {
+                display.innerText = (appFontScale === 1) ? "1" : appFontScale.toFixed(1);
+            }
+            document.querySelectorAll('.theme-circle').forEach(circle => {
+                circle.classList.remove('active');
+            });
+            const activeCircle = document.getElementById('theme-circle-' + appTheme);
+            if (activeCircle) {
+                activeCircle.classList.add('active');
+            }
+            const pillDaftar = document.getElementById('pill-daftar');
+            const pillKotak = document.getElementById('pill-kotak');
+            if (pillDaftar && pillKotak) {
+                if (appLayoutMode === 'kotak') {
+                    pillKotak.classList.add('active');
+                    pillDaftar.classList.remove('active');
+                } else {
+                    pillDaftar.classList.add('active');
+                    pillKotak.classList.remove('active');
+                }
+            }
+        }
+
+        function muatPengaturan() {
+            terapkanUkuranFont(appFontScale);
+            terapkanTema(appTheme);
+            terapkanModeTampilan(appLayoutMode);
+        }
+
+        // ==================== LIST & FILTER PERMAINAN ====================
+        let currentLevelFilter = null;
         let filterLevel = document.getElementById('filter-level');
         
         function filter_level(level_terpilih = null){
+            currentLevelFilter = level_terpilih;
             let btn = `<button onclick="filter_level()" class="${level_terpilih == null ? 'active' : ''}">Semua</button>`;
             level.forEach((item)=>{
                 btn += `<button onclick="filter_level('${item}')" class="${level_terpilih == item ? 'active' : ''}">${item}</button>`;
@@ -804,17 +1328,37 @@
             containerPermainan.innerHTML = "";
             
             let data_to_render = level_terpilih ? daftar_permainan.filter((item)=> item.level == level_terpilih) : daftar_permainan;
-            
-            data_to_render.forEach((game, index) => {
-                let delay = index * 0.1; 
-                containerPermainan.innerHTML += `
-                    <div class="game-card animate__animated animate__fadeInLeft" style="animation-delay: ${delay}s" onclick="bukaDetail('${game.id_permainan}')">
-                        <span style="font-weight: 700; font-size: 14px; color: var(--dark);">${game.nama_permainan} <span style="opacity:0.5; font-size:11px;">(${game.level})</span></span>
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                `;
-            });
+
+            if (appLayoutMode === 'kotak') {
+                containerPermainan.className = 'game-grid-container';
+                data_to_render.forEach((game, index) => {
+                    let delay = index * 0.06; 
+                    containerPermainan.innerHTML += `
+                        <div class="game-card-grid animate__animated animate__zoomIn" style="animation-delay: ${delay}s" onclick="bukaDetail('${game.id_permainan}')">
+                            <div class="game-grid-icon">
+                                <i class="fas fa-basketball-ball"></i>
+                            </div>
+                            <div class="game-grid-title">${game.nama_permainan}</div>
+                            <div class="game-grid-badge">${game.level}</div>
+                        </div>
+                    `;
+                });
+            } else {
+                containerPermainan.className = 'game-list-container';
+                data_to_render.forEach((game, index) => {
+                    let delay = index * 0.06; 
+                    containerPermainan.innerHTML += `
+                        <div class="game-card animate__animated animate__fadeInLeft" style="animation-delay: ${delay}s" onclick="bukaDetail('${game.id_permainan}')">
+                            <span style="font-weight: 700; font-size: 0.9em; color: var(--text-title);">${game.nama_permainan} <span style="opacity:0.5; font-size:0.75em;">(${game.level})</span></span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    `;
+                });
+            }
         }
+
+        // Muat pengaturan awal dari localStorage dan render permainan
+        muatPengaturan();
         filter_level();
 
         // Tambahkan footer kredensial ke semua screen kecuali splash-screen
