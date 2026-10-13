@@ -286,6 +286,9 @@
         .menu-btn:hover i {
             transform: scale(1.1) rotate(-5deg);
         }
+        .menu-btn.keluar {
+            grid-column: span 2;
+        }
         .menu-btn.keluar i { 
             background: #ef4444; color: white;
             box-shadow: 0 8px 15px rgba(239, 68, 68, 0.3);
@@ -418,6 +421,53 @@
             font-weight: 600;
             font-size: 0.9em;
         }
+
+        /* Kontrol Sudut Pandang Video */
+        .video-angle-controls {
+            display: flex;
+            gap: 10px;
+            padding: 10px 12px;
+            background: rgba(15, 15, 45, 0.95);
+            border-top: 1px solid rgba(255, 195, 15, 0.25);
+            box-sizing: border-box;
+        }
+
+        [data-theme="dark"] .video-angle-controls {
+            background: #141438;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-angle {
+            flex: 1;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border: 1.5px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            font-size: 0.78em;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-angle:hover {
+            background: rgba(255, 195, 15, 0.2);
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-angle.active {
+            background: var(--primary);
+            color: var(--icon-dark);
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(255, 195, 15, 0.35);
+        }
         
         /* Accordion */
         .accordion-item {
@@ -468,6 +518,34 @@
         .accordion-content li { margin-bottom: 8px; }
         .accordion-content li b { color: var(--text-title); }
 
+        /* Tombol Isi Form Umpan Balik Efikasi Diri */
+        .btn-isi-form {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #00f274, #00c853);
+            color: #082618;
+            text-align: center;
+            border: none;
+            border-radius: 16px;
+            font-size: 0.95em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 25px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 242, 116, 0.4);
+            transition: all 0.3s;
+        }
+        .btn-isi-form:hover {
+            filter: brightness(1.08);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 242, 116, 0.55);
+        }
+        .btn-isi-form:active {
+            transform: translateY(0);
+        }
+
         /* Tombol Unduh Format Diskusi */
         .btn-diskusi {
             display: block;
@@ -482,7 +560,7 @@
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-top: 25px;
+            margin-top: 12px;
             cursor: pointer;
             box-shadow: 0 10px 20px rgba(15, 15, 45, 0.2);
             transition: all 0.3s;
@@ -491,6 +569,351 @@
             filter: brightness(1.1);
             transform: translateY(-3px);
             box-shadow: 0 15px 25px rgba(15, 15, 45, 0.3);
+        }
+
+        /* Form Umpan Balik Efikasi Diri Styles */
+        .form-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 20px 18px;
+            margin-bottom: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 4px 14px var(--card-shadow);
+        }
+        .form-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--card-border);
+        }
+        .form-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--primary);
+            color: var(--icon-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15em;
+            flex-shrink: 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        .form-card-title {
+            margin: 0;
+            font-size: 1.05em;
+            font-weight: 700;
+            color: var(--text-title);
+        }
+        .form-card-desc {
+            font-size: 0.78em;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .form-group {
+            margin-bottom: 14px;
+        }
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+        .form-label {
+            display: block;
+            font-size: 0.8125em;
+            font-weight: 700;
+            color: var(--text-title);
+            margin-bottom: 6px;
+        }
+        .form-input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            background: var(--ctrl-bg);
+            color: var(--text-body);
+            font-family: inherit;
+            font-size: 0.875em;
+            outline: none;
+            transition: all 0.25s;
+        }
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 195, 15, 0.25);
+            background: var(--card-bg);
+        }
+        .scale-legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .scale-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 10px;
+            background: var(--ctrl-bg);
+            border: 1px solid var(--card-border);
+            font-size: 0.78em;
+            color: var(--text-body);
+        }
+        .scale-badge {
+            display: inline-block;
+            font-weight: 800;
+            font-size: 0.75em;
+            padding: 2px 7px;
+            border-radius: 6px;
+            background: var(--btn-dark-bg);
+            color: var(--btn-dark-text);
+            flex-shrink: 0;
+        }
+        .statement-item {
+            padding: 14px 12px;
+            border-radius: 14px;
+            background: var(--ctrl-bg);
+            border: 1px solid var(--card-border);
+            margin-bottom: 14px;
+            transition: all 0.2s;
+        }
+        .statement-item:hover, .statement-item.answered {
+            border-color: rgba(255, 195, 15, 0.6);
+        }
+        .statement-text {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: var(--text-title);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        .statement-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--icon-dark);
+            font-size: 0.78em;
+            font-weight: 800;
+            margin-right: 6px;
+        }
+        .rating-options-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+        }
+        .rating-option {
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+        }
+        .rating-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+            pointer-events: none;
+        }
+        .rating-pill {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 4px;
+            border-radius: 10px;
+            background: var(--card-bg);
+            border: 1.5px solid var(--card-border);
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .rating-pill:hover {
+            border-color: var(--primary);
+            transform: translateY(-1px);
+        }
+        .rating-option input[type="radio"]:checked + .rating-pill {
+            background: var(--btn-dark-bg);
+            color: var(--btn-dark-text);
+            border-color: var(--primary);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            font-weight: 700;
+        }
+        .rating-pill .rating-code {
+            font-size: 0.8125em;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+        .rating-pill .rating-score {
+            font-size: 0.68em;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+        .form-actions-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+        .btn-form-batal {
+            flex: 1;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 2px solid var(--card-border);
+            background: var(--card-bg);
+            color: var(--text-title);
+            font-size: 0.875em;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        .btn-form-batal:hover {
+            background: var(--ctrl-bg);
+            border-color: var(--secondary);
+        }
+        .btn-form-simpan {
+            flex: 2;
+            padding: 14px 18px;
+            border-radius: 14px;
+            border: none;
+            background: linear-gradient(135deg, #00f274, #00c853);
+            color: #082618;
+            font-size: 0.9em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 8px 18px rgba(0, 242, 116, 0.35);
+            transition: all 0.2s;
+        }
+        .btn-form-simpan:hover {
+            filter: brightness(1.08);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(0, 242, 116, 0.5);
+        }
+
+        /* Modal Sukses Simpan Form Feedback (Tema & Font Adaptif) */
+        .app-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 15, 45, 0.72);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            padding: 20px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        .app-modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .app-modal-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 15px 35px var(--card-shadow), 0 5px 15px rgba(0, 0, 0, 0.15);
+            border-radius: 24px;
+            padding: 28px 22px 24px 22px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .app-modal-icon-wrapper {
+            width: 68px;
+            height: 68px;
+            margin: 0 auto 16px auto;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00f274, #00c853);
+            color: #082618;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            box-shadow: 0 8px 24px rgba(0, 242, 116, 0.45);
+        }
+        .app-modal-title {
+            margin: 0 0 10px 0;
+            font-size: 1.25em;
+            font-weight: 800;
+            color: var(--text-title);
+        }
+        .app-modal-message {
+            margin: 0 0 16px 0;
+            font-size: 0.875em;
+            color: var(--text-body);
+            line-height: 1.55;
+        }
+        .app-modal-message strong {
+            color: var(--text-title);
+            font-weight: 700;
+        }
+        .app-modal-file-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--ctrl-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 8px 14px;
+            margin-bottom: 22px;
+            font-size: 0.78em;
+            font-weight: 600;
+            color: var(--secondary);
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .app-modal-file-badge i {
+            color: #ef4444;
+            font-size: 1.15em;
+        }
+        .btn-modal-ok {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px 18px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #00f274, #00c853);
+            color: #082618;
+            font-size: 0.9em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 242, 116, 0.35);
+            transition: all 0.25s;
+        }
+        .btn-modal-ok:hover {
+            filter: brightness(1.08);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(0, 242, 116, 0.45);
+        }
+        .btn-modal-ok:active {
+            transform: translateY(0);
         }
 
         /* Tombol Kembali */
@@ -782,30 +1205,41 @@
             </div>
             
             <div class="menu-grid">
-                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.1s" onclick="goTo('permainan-screen')">
+                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.1s" onclick="goTo('penguatan-screen', 'Penguatan Efikasi Diri')">
+                    <i class="fas fa-seedling"></i>
+                    <div>Penguatan Efikasi Diri</div>
+                </div>
+                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.2s" onclick="goTo('permainan-screen')">
                     <i class="fas fa-basketball-ball"></i>
                     <div>Permainan</div>
                 </div>
-                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.2s" onclick="goTo('tujuan-screen', 'Tujuan')">
+                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.3s" onclick="goTo('tujuan-screen', 'Tujuan')">
                     <i class="fas fa-bullseye"></i>
                     <div>Tujuan</div>
                 </div>
-                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.3s" onclick="goTo('manfaat-screen', 'Manfaat')">
+                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.4s" onclick="goTo('manfaat-screen', 'Manfaat')">
                     <i class="fas fa-heartbeat"></i>
                     <div>Manfaat</div>
                 </div>
-                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.4s" onclick="goTo('panduan-screen')">
+                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.5s" onclick="goTo('panduan-screen')">
                     <i class="fas fa-book-open"></i>
                     <div>Panduan</div>
                 </div>
-                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.5s" onclick="goTo('info-screen', 'Pengaturan')">
+                <div class="menu-btn wow animate__zoomIn" data-wow-delay="0.6s" onclick="goTo('info-screen', 'Pengaturan')">
                     <i class="fas fa-cog"></i>
                     <div>Pengaturan</div>
                 </div>
-                <div class="menu-btn keluar wow animate__zoomIn" data-wow-delay="0.6s" onclick="keluarAplikasi()">
+                <div class="menu-btn keluar wow animate__zoomIn" data-wow-delay="0.7s" onclick="keluarAplikasi()">
                     <i class="fas fa-power-off"></i>
                     <div>Keluar</div>
                 </div>
+            </div>
+        </div>
+
+        <div id="penguatan-screen" class="screen">
+            <button class="btn-back" onclick="goTo('beranda-screen')"><i class="fas fa-arrow-left"></i> Kembali</button>
+            <h2 id="penguatan-title" class="animate__animated animate__fadeInDown" style="font-size: 1.375em; color: var(--text-title); margin-bottom: 20px;">Penguatan Efikasi Diri</h2>
+            <div id="penguatan-content" class="animate__animated animate__fadeInUp">
             </div>
         </div>
 
@@ -839,7 +1273,15 @@
     allowfullscreen>
 </iframe>
 
-
+                <!-- Tombol Ganti Sudut Pandang Video -->
+                <div id="video-angle-controls" class="video-angle-controls" style="display: none;">
+                    <button type="button" id="btn-sudut-atas" class="btn-angle active" onclick="gantiSudutPandang('atas')">
+                        <i class="fas fa-video"></i> Sudut pandang atas
+                    </button>
+                    <button type="button" id="btn-sudut-bawah" class="btn-angle" onclick="gantiSudutPandang('bawah')">
+                        <i class="fas fa-video"></i> Sudut pandang bawah
+                    </button>
+                </div>
 
                 <div class="video-kosong" id="video-kosong">
                     Video dari permainan ini belum tersedia.
@@ -849,9 +1291,118 @@
             <div id="accordion-container" class="animate__animated animate__fadeInUp">
                 </div>
 
-            <button class="btn-diskusi animate__animated animate__fadeInUp" style="animation-delay: 0.4s;" onclick="bukaFormatDiskusi()">
-                <i class="fas fa-cloud-download-alt" style="margin-right: 5px;"></i> Unduh Format Diskusi
+            <button class="btn-isi-form animate__animated animate__fadeInUp" style="animation-delay: 0.3s;" onclick="bukaFormUmpanBalik()">
+                <i class="fas fa-file-signature" style="margin-right: 6px;"></i> ISI FORM UMPAN BALIK EFIKASI DIRI
             </button>
+
+            <button class="btn-diskusi animate__animated animate__fadeInUp" style="animation-delay: 0.4s;" onclick="bukaFormatDiskusi()">
+                <i class="fas fa-cloud-download-alt" style="margin-right: 5px;"></i> Unduh Form Umpan Balik Efikasi Diri
+            </button>
+        </div>
+
+        <div id="form-umpan-balik-screen" class="screen">
+            <button class="btn-back" onclick="batalFormUmpanBalik()"><i class="fas fa-arrow-left"></i> Batal</button>
+            
+            <div class="animate__animated animate__fadeInDown" style="margin-bottom: 20px;">
+                <h2 style="font-size: 1.375em; color: var(--text-title); margin: 0 0 6px 0;">Form Umpan Balik Efikasi Diri</h2>
+                <p id="fb-game-info" style="color: var(--secondary); font-size: 0.85em; margin: 0;">Refleksi keyakinan diri siswa dalam permainan PJOK</p>
+            </div>
+
+            <!-- Card 1: Form Bagian Data Diri -->
+            <div class="form-card animate__animated animate__fadeInUp">
+                <div class="form-card-header">
+                    <div class="form-card-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div>
+                        <h3 class="form-card-title">Bagian 1: Data Diri Siswa</h3>
+                        <div class="form-card-desc">Data tersimpan otomatis untuk pengisian berikutnya</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="fb-nama">Nama Lengkap <span style="color:#ef4444;">*</span></label>
+                    <input type="text" id="fb-nama" class="form-input" placeholder="Masukkan nama lengkap siswa...">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="fb-kelas">Kelas <span style="color:#ef4444;">*</span></label>
+                    <input type="text" id="fb-kelas" class="form-input" placeholder="Contoh: VII-A / VIII-B / IX-C">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="fb-sekolah">Sekolah <span style="color:#ef4444;">*</span></label>
+                    <input type="text" id="fb-sekolah" class="form-input" placeholder="Masukkan nama sekolah...">
+                </div>
+            </div>
+
+            <!-- Card 2: Legend / Panduan Pengisian -->
+            <div class="form-card animate__animated animate__fadeInUp">
+                <div class="form-card-header">
+                    <div class="form-card-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div>
+                        <h3 class="form-card-title">Bagian 2: Panduan Pengisian</h3>
+                        <div class="form-card-desc">Keterangan skala dan instruksi pengisian formulir</div>
+                    </div>
+                </div>
+                <div style="background: var(--ctrl-bg); border-left: 4px solid var(--primary); padding: 12px 14px; border-radius: 0 12px 12px 0; margin-bottom: 14px; font-size: 0.8125em; line-height: 1.6; color: var(--text-body);">
+                    <strong>Petunjuk pengisian:</strong> Berilah tanda pada salah satu pilihan jawaban yang paling sesuai dengan keadaan diri siswa.
+                </div>
+                <div class="form-label">Keterangan Skala Penilaian:</div>
+                <div class="scale-legend-grid">
+                    <div class="scale-legend-item">
+                        <span class="scale-badge">STS (1)</span>
+                        <span>Sangat Tidak Setuju</span>
+                    </div>
+                    <div class="scale-legend-item">
+                        <span class="scale-badge">TS (2)</span>
+                        <span>Tidak Setuju</span>
+                    </div>
+                    <div class="scale-legend-item">
+                        <span class="scale-badge">CS (3)</span>
+                        <span>Cukup Setuju</span>
+                    </div>
+                    <div class="scale-legend-item">
+                        <span class="scale-badge">S (4)</span>
+                        <span>Setuju</span>
+                    </div>
+                    <div class="scale-legend-item">
+                        <span class="scale-badge">SS (5)</span>
+                        <span>Sangat Setuju</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Form Utama (Hari, Tanggal & 10 Poin Pernyataan) -->
+            <div class="form-card animate__animated animate__fadeInUp">
+                <div class="form-card-header">
+                    <div class="form-card-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div>
+                        <h3 class="form-card-title">Bagian 3: Formulir Pernyataan</h3>
+                        <div class="form-card-desc">Pilihlah salah satu opsi untuk setiap pernyataan di bawah ini</div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label class="form-label" for="fb-tanggal">Hari, Tanggal <span style="color:#ef4444;">*</span></label>
+                    <input type="text" id="fb-tanggal" class="form-input" placeholder="Contoh: Selasa, 14 Oktober 2026">
+                </div>
+
+                <div id="fb-statements-container">
+                    <!-- 10 Pernyataan di-render secara dinamis oleh JavaScript -->
+                </div>
+            </div>
+
+            <!-- Tombol Aksi Bawah: Batal & Simpan -->
+            <div class="form-actions-row animate__animated animate__fadeInUp">
+                <button type="button" class="btn-form-batal" onclick="batalFormUmpanBalik()">
+                    <i class="fas fa-arrow-left"></i> Batal
+                </button>
+                <button type="button" class="btn-form-simpan" onclick="simpanFormUmpanBalik()">
+                    <i class="fas fa-file-pdf"></i> Simpan & Unduh PDF
+                </button>
+            </div>
         </div>
 
         <div id="manfaat-screen" class="screen">
@@ -871,6 +1422,19 @@
             <h2 class="animate__animated animate__fadeIn" style="font-size: 1.375em; margin-bottom: 15px; color: var(--text-title);">Panduan Penggunaan</h2>
             
             <div id="accordion-panduan" class="animate__animated animate__fadeInUp">
+                <!-- Item: Penguatan Efikasi Diri -->
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAccordion(this)">
+                        <span><i class="fas fa-seedling" style="color:var(--primary); margin-right:10px; width: 20px; text-align: center;"></i> Penguatan Efikasi Diri</span>
+                        <i class="fas fa-chevron-down" style="color: var(--secondary); font-size: 12px;"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Menu ini memuat materi dan panduan khusus mengenai pengembangan serta penguatan efikasi diri (keyakinan diri) siswa dalam aktivitas pembelajaran PJOK.</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <!-- Item 1: Permainan -->
                 <div class="accordion-item">
                     <button class="accordion-btn" onclick="toggleAccordion(this)">
@@ -1021,11 +1585,33 @@
             </div>
         </div>
 
+        <!-- Modal Sukses Simpan Form Umpan Balik (Adaptif Tema & Pengaturan) -->
+        <div id="modal-feedback-sukses" class="app-modal-overlay">
+            <div class="app-modal-card animate__animated animate__zoomIn">
+                <div class="app-modal-icon-wrapper">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h3 class="app-modal-title">Formulir Tersimpan!</h3>
+                <p class="app-modal-message">
+                    Formulir sudah disimpan dalam file, silakan periksa folder <strong>"Downloads"</strong>.
+                </p>
+                <div class="app-modal-file-badge">
+                    <i class="fas fa-file-pdf"></i> <span id="modal-feedback-filename">Umpan_Balik_Efikasi_Diri.pdf</span>
+                </div>
+                <button type="button" class="btn-modal-ok" onclick="tutupModalFeedbackSukses()">
+                    <i class="fas fa-check-circle"></i> OK, Mengerti
+                </button>
+            </div>
+        </div>
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
     <script type="text/javascript" src="dataPermainan_baru.js"></script>
     <script type="text/javascript" src="tujuanManfaat.js"></script>
+    <script type="text/javascript" src="penguatanEfikasiDiri.js"></script>
     <script>
         new WOW().init();
 
@@ -1072,6 +1658,12 @@
         function goTo(screenId, infoTitle = '') {
             if(splashTimer) clearTimeout(splashTimer);
 
+            // Matikan video jika berpindah dari halaman detail
+            if(screenId !== 'detail-screen') {
+                let video = document.getElementById('detail-video');
+                if (video) video.src = '';
+            }
+
             document.querySelectorAll('.screen').forEach(s => {
                 s.classList.remove('active');
             });
@@ -1101,6 +1693,11 @@
                     accordionManfaat.innerHTML += buatAccordion(UCFirst(keys[n]), manfaat_app[keys[n]], fa[n]);
                 }
             }
+            else if(screenId === "penguatan-screen") {
+                const penguatanTitle = document.getElementById('penguatan-title');
+                if (penguatanTitle) penguatanTitle.innerText = infoTitle || 'Penguatan Efikasi Diri';
+                renderPenguatanEfikasiDiri();
+            }
         }
 
 	function splashActive(){
@@ -1119,27 +1716,155 @@
             return tmp;
         }
 
+        function renderPenguatanEfikasiDiri() {
+            const container = document.getElementById('penguatan-content');
+            if (!container) return;
+
+            if (typeof penguatan_efikasi_diri === 'undefined' || !penguatan_efikasi_diri) {
+                container.innerHTML = '<p style="text-align:center; color:var(--text-muted); padding:20px;">Data penguatan efikasi diri belum tersedia.</p>';
+                return;
+            }
+
+            const icons = ['fa-trophy', 'fa-search', 'fa-comments', 'fa-heart-pulse'];
+
+            let html = `
+                <div style="background: var(--card-bg); padding: 22px 18px; border-radius: 18px; margin-bottom: 22px; border: 1px solid var(--card-border); box-shadow: 0 4px 14px var(--card-shadow);">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+                        <div style="width: 44px; height: 44px; border-radius: 14px; background: var(--primary); display: flex; align-items: center; justify-content: center; color: var(--icon-dark); font-size: 1.25em; box-shadow: 0 4px 10px rgba(0,0,0,0.1); flex-shrink: 0;">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.05em; font-weight: 700; color: var(--text-title);">Pengantar Teori</h3>
+                            <span style="font-size: 0.78em; color: var(--secondary);">Model Permainan Efikasi Diri</span>
+                        </div>
+                    </div>
+                    <p style="margin: 0; color: var(--text-body); font-size: 0.875em; line-height: 1.65; text-align: justify;">
+                        ${penguatan_efikasi_diri.pengantar || ''}
+                    </p>
+                </div>
+
+                <h3 style="font-size: 0.95em; font-weight: 700; color: var(--text-title); margin: 0 0 14px 4px; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-layer-group" style="color: var(--primary);"></i> 4 Sumber Pembentukan Efikasi Diri
+                </h3>
+            `;
+
+            if (Array.isArray(penguatan_efikasi_diri.item)) {
+                penguatan_efikasi_diri.item.forEach((it, idx) => {
+                    const iconClass = icons[idx % icons.length];
+                    html += `
+                        <div class="accordion-item">
+                            <button class="accordion-btn" onclick="toggleAccordion(this)">
+                                <span style="display: flex; align-items: center; gap: 10px; text-align: left;">
+                                    <i class="fas ${iconClass}" style="color:var(--primary); font-size: 1.1em; width: 22px; text-align: center; flex-shrink: 0;"></i> 
+                                    <span>${it.sumber}</span>
+                                </span>
+                                <i class="fas fa-chevron-down" style="color: var(--secondary); font-size: 12px; flex-shrink: 0;"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <div style="padding: 10px 0 16px 0;">
+                                    <div style="margin-bottom: 14px;">
+                                        <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 0.75em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; background: rgba(255, 195, 15, 0.2); color: var(--text-title); padding: 4px 9px; border-radius: 8px; margin-bottom: 6px;">
+                                            <i class="fas fa-gamepad"></i> Bentuk Integrasi dalam Permainan
+                                        </span>
+                                        <p style="margin: 4px 0 0 0; line-height: 1.6; color: var(--text-body); font-size: 0.9em;">${it.bentuk}</p>
+                                    </div>
+                                    <div>
+                                        <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 0.75em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; background: rgba(16, 185, 129, 0.15); color: #059669; padding: 4px 9px; border-radius: 8px; margin-bottom: 6px;">
+                                            <i class="fas fa-bullseye"></i> Hasil yang Diharapkan
+                                        </span>
+                                        <p style="margin: 4px 0 0 0; line-height: 1.6; color: var(--text-body); font-size: 0.9em;">${it.hasil}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            container.innerHTML = html;
+        }
+
+        let currentVideoData = null;
+
+        function ubahUrlEmbed(url) {
+            if (!url) return '';
+            let tmp = String(url).trim();
+            tmp = tmp.replace('youtu.be/', 'youtube.com/embed/');
+            tmp = tmp.replace('watch?v=', 'embed/');
+            return tmp;
+        }
+
+        function gantiSudutPandang(sudut) {
+            if (!currentVideoData) return;
+
+            let videoUrl = '';
+            if (Array.isArray(currentVideoData)) {
+                videoUrl = (sudut === 'bawah') ? (currentVideoData[1] || '') : (currentVideoData[0] || '');
+            } else if (typeof currentVideoData === 'object' && currentVideoData !== null) {
+                videoUrl = currentVideoData[sudut] || (sudut === 'atas' ? (currentVideoData.top || Object.values(currentVideoData)[0] || '') : (currentVideoData.bottom || Object.values(currentVideoData)[1] || ''));
+            }
+
+            const btnAtas = document.getElementById('btn-sudut-atas');
+            const btnBawah = document.getElementById('btn-sudut-bawah');
+            if (btnAtas && btnBawah) {
+                if (sudut === 'bawah') {
+                    btnBawah.classList.add('active');
+                    btnAtas.classList.remove('active');
+                } else {
+                    btnAtas.classList.add('active');
+                    btnBawah.classList.remove('active');
+                }
+            }
+
+            let video = document.getElementById('detail-video');
+            let videoKosong = document.getElementById('video-kosong');
+
+            if (!videoUrl || String(videoUrl).trim() === '') {
+                videoKosong.style.display = 'block';
+                video.style.display = 'none';
+                video.src = '';
+            } else {
+                videoKosong.style.display = 'none';
+                video.style.display = 'block';
+                video.src = ubahUrlEmbed(videoUrl);
+            }
+        }
+
+        let lastDetailGameId = null;
+
         function bukaDetail(id) {
+            lastDetailGameId = id;
             const game = daftar_permainan.find(g => g.id_permainan === id);
             document.getElementById('detail-judul').innerText = game.nama_permainan;
             let video = document.getElementById('detail-video');
             let videoKosong = document.getElementById('video-kosong');
-            if(game.contoh_video == ""){
-                videoKosong.style.display = "block";
-                video.style.display = "none";
-            }
-            else {
-               let tmp = game.contoh_video
-               tmp = tmp.replace('youtu.be','youtube.com/embed')
-              // tmp = tmp + "?controls="
-                videoKosong.style.display = "none";
-                video.style.display = "block";
-                video.src = tmp; //game.contoh_video;
-                //video.load();
+            let angleControls = document.getElementById('video-angle-controls');
+
+            // Failsafe: cek tipe data contoh_video
+            // Jika typeof object (baik objek maupun array), tampilkan tombol sudut pandang
+            // Jika typeof string / lainnya, sembunyikan tombol
+            if (typeof game.contoh_video === 'object' && game.contoh_video !== null) {
+                if (angleControls) angleControls.style.display = 'flex';
+                currentVideoData = game.contoh_video;
+                gantiSudutPandang('atas');
+            } else {
+                if (angleControls) angleControls.style.display = 'none';
+                currentVideoData = null;
+
+                if (!game.contoh_video || String(game.contoh_video).trim() === '') {
+                    videoKosong.style.display = 'block';
+                    video.style.display = 'none';
+                    video.src = '';
+                } else {
+                    videoKosong.style.display = 'none';
+                    video.style.display = 'block';
+                    video.src = ubahUrlEmbed(game.contoh_video);
+                }
             }
             
             const accordionContainer = document.getElementById('accordion-container');
             accordionContainer.innerHTML = '';
+            accordionContainer.innerHTML += buatAccordion('Penguatan Efikasi Diri', game.efikasi, 'fa-seedling');
             accordionContainer.innerHTML += buatAccordion('Peraturan', game.peraturan, 'fa-list-ol');
             accordionContainer.innerHTML += buatAccordion('Cara Bermain', game.cara_bermain, 'fa-running');
             accordionContainer.innerHTML += buatAccordion('Alat yang Dibutuhkan', game.peralatan, 'fa-toolbox');
@@ -1148,6 +1873,20 @@
         }
 
         function buatAccordion(judul, arrayData, iconClass) {
+            if(typeof arrayData === "string"){
+            return `
+                <div class="accordion-item">
+                    <button class="accordion-btn" onclick="toggleAccordion(this)">
+                        <span><i class="fas ${iconClass}" style="color:var(--primary); margin-right:10px; width: 20px; text-align: center;"></i> ${judul}</span>
+                        <i class="fas fa-chevron-down" style="color: var(--secondary); font-size: 12px;"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>${arrayData}</ul>
+                    </div>
+                </div>
+            `;
+            }
+            else {
             let liElements = arrayData.map(item => `<li>${item}</li>`).join('');
             return `
                 <div class="accordion-item">
@@ -1160,6 +1899,7 @@
                     </div>
                 </div>
             `;
+            }
         }
 
         function toggleAccordion(btn) {
@@ -1190,7 +1930,443 @@
         }
 
         function bukaFormatDiskusi() {
-            alert("Sistem akan mengunduh Form Diskusi PDF. (Hanya Simulasi)");
+            const fileName = 'UMPAN BALIK EFIKASI DIRI SISWA.pdf';
+            const fileUrl = encodeURI(fileName);
+
+            // 1. Dukungan Android JavascriptInterface jika disediakan oleh Android Studio
+            if (window.Android && typeof window.Android.openPdf === 'function') {
+                window.Android.openPdf(fileName);
+                return;
+            }
+
+            // 2. Tautan berkas fisik langsung dengan target="_blank" dan atribut download.
+            // Pendekatan ini 100% kompatibel dengan Android Studio WebView (dapat dicegat via 
+            // shouldOverrideUrlLoading / setDownloadListener) dan aman di browser biasa.
+            const link = document.createElement('a');
+            link.href = fileUrl;
+            link.download = fileName;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // ==================== FORM UMPAN BALIK EFIKASI DIRI ====================
+        const daftar_pernyataan_efikasi = [
+            "Saya yakin dapat menyelesaikan tugas yang sulit apabila saya berusaha dengan sungguh-sungguh.",
+            "Saya mampu mencari cara lain ketika menghadapi kesulitan dalam menyelesaikan permainan.",
+            "Saya yakin dapat mencapai tujuan permainan yang telah ditetapkan.",
+            "Saya mampu menentukan tindakan yang tepat ketika menghadapi situasi yang tidak terduga saat bermain.",
+            "Saya yakin dapat mengatasi tantangan ketika mencoba permainan yang belum pernah saya lakukan.",
+            "Saya mampu menemukan solusi ketika mengalami kesulitan dalam melakukan gerakan permainan.",
+            "Saya tetap tenang ketika menghadapi kesulitan dalam menyelesaikan permainan.",
+            "Saya dapat menemukan beberapa cara untuk mengatasi masalah yang muncul selama permainan.",
+            "Saya yakin dapat menghadapi situasi yang tidak terduga selama mengikuti permainan.",
+            "Saya yakin mampu mengatasi kesulitan yang muncul selama mengikuti kegiatan permainan."
+        ];
+
+        const skala_opsi = [
+            { code: 'STS', label: 'Sangat Tidak Setuju', score: 1 },
+            { code: 'TS', label: 'Tidak Setuju', score: 2 },
+            { code: 'CS', label: 'Cukup Setuju', score: 3 },
+            { code: 'S', label: 'Setuju', score: 4 },
+            { code: 'SS', label: 'Sangat Setuju', score: 5 }
+        ];
+
+        function renderFormStatements() {
+            const container = document.getElementById('fb-statements-container');
+            if (!container) return;
+
+            let html = '';
+            daftar_pernyataan_efikasi.forEach((stmt, idx) => {
+                const qNum = idx + 1;
+                const qName = `q_efikasi_${idx}`;
+                html += `
+                    <div class="statement-item" id="item_statement_${idx}">
+                        <div class="statement-text">
+                            <span class="statement-number">${qNum}</span>
+                            ${stmt}
+                        </div>
+                        <div class="rating-options-row">
+                            ${skala_opsi.map(opt => `
+                                <label class="rating-option">
+                                    <input type="radio" name="${qName}" value="${opt.code}" data-score="${opt.score}" onchange="tandaiDijawab(${idx})">
+                                    <div class="rating-pill">
+                                        <span class="rating-code">${opt.code}</span>
+                                        <span class="rating-score">(${opt.score})</span>
+                                    </div>
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function tandaiDijawab(idx) {
+            const el = document.getElementById(`item_statement_${idx}`);
+            if (el) el.classList.add('answered');
+        }
+
+        function bukaFormUmpanBalik() {
+            // 1. Tampilkan judul game di subtitle form
+            let gameTitle = 'Permainan PJOK';
+            if (lastDetailGameId && typeof daftar_permainan !== 'undefined') {
+                const g = daftar_permainan.find(x => x.id_permainan === lastDetailGameId);
+                if (g) gameTitle = g.nama_permainan;
+            }
+            const infoEl = document.getElementById('fb-game-info');
+            if (infoEl) infoEl.innerText = `Evaluasi Permainan: ${gameTitle}`;
+
+            // 2. Render 10 pernyataan
+            renderFormStatements();
+
+            // 3. Reset pilihan radio sebelumnya
+            daftar_pernyataan_efikasi.forEach((_, idx) => {
+                const radios = document.getElementsByName(`q_efikasi_${idx}`);
+                radios.forEach(r => r.checked = false);
+                const itemEl = document.getElementById(`item_statement_${idx}`);
+                if (itemEl) itemEl.classList.remove('answered');
+            });
+
+            // 4. Default Hari, Tanggal format bahasa Indonesia
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const todayStr = new Date().toLocaleDateString('id-ID', options);
+            const dateInput = document.getElementById('fb-tanggal');
+            if (dateInput) dateInput.value = todayStr;
+
+            // 5. Muat profil siswa dari localStorage (Nama, Kelas, Sekolah) menggunakan try ... catch
+            try {
+                const savedProfileStr = localStorage.getItem('efikasi_siswa_profil');
+                if (savedProfileStr) {
+                    const savedProfile = JSON.parse(savedProfileStr);
+                    if (savedProfile && typeof savedProfile === 'object') {
+                        if (savedProfile.nama) document.getElementById('fb-nama').value = savedProfile.nama;
+                        if (savedProfile.kelas) document.getElementById('fb-kelas').value = savedProfile.kelas;
+                        if (savedProfile.sekolah) document.getElementById('fb-sekolah').value = savedProfile.sekolah;
+                    }
+                }
+            } catch (e) {
+                console.warn("Gagal membaca profil siswa dari localStorage:", e);
+            }
+
+            goTo('form-umpan-balik-screen');
+        }
+
+        function batalFormUmpanBalik() {
+            if (lastDetailGameId) {
+                bukaDetail(lastDetailGameId);
+            } else {
+                goTo('permainan-screen');
+            }
+        }
+
+        function simpanFormUmpanBalik() {
+            const nama = (document.getElementById('fb-nama').value || '').trim();
+            const kelas = (document.getElementById('fb-kelas').value || '').trim();
+            const sekolah = (document.getElementById('fb-sekolah').value || '').trim();
+            const tanggal = (document.getElementById('fb-tanggal').value || '').trim();
+
+            if (!nama) {
+                alert("Harap masukkan Nama Lengkap siswa.");
+                document.getElementById('fb-nama').focus();
+                return;
+            }
+            if (!kelas) {
+                alert("Harap masukkan Kelas siswa.");
+                document.getElementById('fb-kelas').focus();
+                return;
+            }
+            if (!sekolah) {
+                alert("Harap masukkan Nama Sekolah siswa.");
+                document.getElementById('fb-sekolah').focus();
+                return;
+            }
+
+            // Validasi kelengkapan 10 pernyataan
+            const answers = [];
+            for (let i = 0; i < daftar_pernyataan_efikasi.length; i++) {
+                const radios = document.getElementsByName(`q_efikasi_${i}`);
+                let chosen = null;
+                for (let r of radios) {
+                    if (r.checked) {
+                        chosen = {
+                            code: r.value,
+                            score: parseInt(r.getAttribute('data-score'), 10)
+                        };
+                        break;
+                    }
+                }
+                if (!chosen) {
+                    tampilkanModalFeedbackSukses(`Pernyataan nomor ${i + 1} belum dijawab. Harap pilih salah satu opsi (STS, TS, CS, S, SS).`, true);
+                    const el = document.getElementById(`item_statement_${i}`);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+                answers.push({
+                    no: i + 1,
+                    statement: daftar_pernyataan_efikasi[i],
+                    code: chosen.code,
+                    score: chosen.score
+                });
+            }
+
+            // Simpan profil siswa (Nama, Kelas, Sekolah) ke localStorage dengan try ... catch
+            try {
+                const profil = { nama, kelas, sekolah };
+                localStorage.setItem('efikasi_siswa_profil', JSON.stringify(profil));
+            } catch (e) {
+                console.warn("Gagal menyimpan profil siswa ke localStorage:", e);
+            }
+
+            // Nama game yang dievaluasi
+            let gameTitle = 'Permainan PJOK';
+            if (lastDetailGameId && typeof daftar_permainan !== 'undefined') {
+                const g = daftar_permainan.find(x => x.id_permainan === lastDetailGameId);
+                if (g) gameTitle = g.nama_permainan;
+            }
+
+            // Buat berkas PDF via jsPDF & AutoTable menggunakan jembatan aman
+            const hasil = generateAndDownloadPdf({
+                nama,
+                kelas,
+                sekolah,
+                tanggal,
+                gameTitle,
+                answers
+            });
+
+            if (hasil && hasil.success) {
+                // Tampilkan modal feedback sukses (menggantikan browser alert)
+                tampilkanModalFeedbackSukses(hasil.fileName);
+            }
+        }
+
+        let toggle = false
+        function tampilkanModalFeedbackSukses(fileName, jangan = false) {
+            const modal = document.getElementById('modal-feedback-sukses');
+            const fileLabel = document.getElementById('modal-feedback-filename');
+            if (fileLabel && fileName) {
+                fileLabel.innerText = fileName;
+            }
+            if (modal) {
+                modal.classList.add('active');
+            }
+            toggle = jangan;
+        }
+
+        function tutupModalFeedbackSukses() {
+            const modal = document.getElementById('modal-feedback-sukses');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+
+            if(toggle = true){
+                toggle = false;
+                return;
+            }
+
+            // Kembali ke halaman detail game sebelumnya setelah modal ditutup
+            if (lastDetailGameId) {
+                bukaDetail(lastDetailGameId);
+            } else {
+                goTo('permainan-screen');
+            }
+        }
+
+        function downloadPdfSafe(doc, fileName) {
+            if (window.Android && typeof window.Android.savePdfBase64 === 'function') {
+                // 1. Ekstrak string Base64 murni dari dokumen jsPDF (tanpa prefix data URI)
+                let dataUri = doc.output('datauristring');
+                let base64Data = dataUri.indexOf(',') !== -1 ? dataUri.split(',')[1] : dataUri;
+                // Kirim Base64 ke Kotlin WebView
+                window.Android.savePdfBase64(base64Data, fileName);
+            } else if (window.Android && typeof window.Android.saveFileBase64 === 'function') {
+                let dataUri = doc.output('datauristring');
+                let base64Data = dataUri.indexOf(',') !== -1 ? dataUri.split(',')[1] : dataUri;
+                window.Android.saveFileBase64(base64Data, fileName);
+            } else if (window.Android && typeof window.Android.savePdf === 'function') {
+                let dataUri = doc.output('datauristring');
+                let base64Data = dataUri.indexOf(',') !== -1 ? dataUri.split(',')[1] : dataUri;
+                try {
+                    window.Android.savePdf(base64Data, fileName);
+                } catch (e) {
+                    window.Android.savePdf(fileName, base64Data);
+                }
+            } else {
+                // Fallback jika web dibuka di browser PC/Laptop biasa
+                doc.save(fileName);
+            }
+        }
+
+        function timestamp() {
+            let waktu = new Date();
+            let tanggal = waktu.getDate();
+            if (tanggal.toString().length <= 1) {
+                tanggal = `0${tanggal}`;
+            }
+
+            let bulan = waktu.getMonth();
+            bulan = parseInt(bulan) + 1;
+
+            if (bulan.toString().length <= 1) {
+                bulan = `0${bulan}`;
+            }
+
+            let tahun = waktu.getFullYear();
+
+            let jam = waktu.getHours();
+            if (jam.toString().length <= 1) {
+                jam = `0${jam}`;
+            }
+
+            let menit = waktu.getMinutes();
+            if (menit.toString().length <= 1) {
+                menit = `0${menit}`;
+            }
+
+            return `${jam}${menit}-${tanggal}${bulan}${tahun}`;
+        }
+
+        function generateAndDownloadPdf(data) {
+            let ts = timestamp();
+            try {
+                const jsPDFConstructor = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
+                if (!jsPDFConstructor) {
+                    alert("Pustaka PDF belum termuat. Silakan periksa koneksi internet.");
+                    return false;
+                }
+
+                const doc = new jsPDFConstructor({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+
+                // Header Dokumen
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(13);
+                doc.setTextColor(15, 15, 45);
+                doc.text("UMPAN BALIK SISWA TERKAIT EFIKASI DIRI", 105, 16, { align: "center" });
+
+                doc.setFont("helvetica", "normal");
+                doc.setFontSize(9);
+                doc.setTextColor(100, 116, 139);
+                doc.text("Media Belajar Pendidikan Jasmani, Olahraga, dan Kesehatan (PJOK) SMP", 105, 22, { align: "center" });
+
+                // Garis Pembatas Header
+                doc.setDrawColor(15, 15, 45);
+                doc.setLineWidth(0.6);
+                doc.line(14, 26, 196, 26);
+
+                // Kotak Informasi Data Diri Siswa
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(9.5);
+                doc.setTextColor(15, 15, 45);
+                doc.text("IDENTITAS SISWA", 14, 32);
+
+                doc.setFont("helvetica", "normal");
+                doc.setFontSize(8.5);
+                doc.setTextColor(30, 41, 59);
+
+                doc.text(`Nama         : ${data.nama}`, 14, 38);
+                doc.text(`Kelas        : ${data.kelas}`, 14, 43);
+                doc.text(`Sekolah      : ${data.sekolah}`, 14, 48);
+
+                doc.text(`Hari, Tanggal : ${data.tanggal}`, 115, 38);
+                doc.text(`Permainan     : ${data.gameTitle}`, 115, 43);
+
+                // Baris Tabel AutoTable
+                const totalSkor = data.answers.reduce((acc, cur) => acc + cur.score, 0);
+                const rataSkor = (totalSkor / data.answers.length).toFixed(1);
+
+                const tableBody = data.answers.map(item => [
+                    String(item.no),
+                    item.statement,
+                    item.code === 'STS' ? 'V' : '',
+                    item.code === 'TS' ? 'V' : '',
+                    item.code === 'CS' ? 'V' : '',
+                    item.code === 'S' ? 'V' : '',
+                    item.code === 'SS' ? 'V' : '',
+                    String(item.score)
+                ]);
+
+                // Baris Ringkasan Skor
+                tableBody.push([
+                    { content: 'Total Skor & Rata-rata Skor', colSpan: 7, styles: { halign: 'right', fontStyle: 'bold', fillColor: [245, 247, 250] } },
+                    { content: `${totalSkor} (${rataSkor})`, styles: { halign: 'center', fontStyle: 'bold', fillColor: [255, 243, 205] } }
+                ]);
+
+                if (typeof doc.autoTable === 'function') {
+                    doc.autoTable({
+                        startY: 53,
+                        head: [['No', 'Pernyataan Sikap & Keyakinan Diri Siswa', 'STS', 'TS', 'CS', 'S', 'SS', 'Skor']],
+                        body: tableBody,
+                        theme: 'grid',
+                        headStyles: {
+                            fillColor: [15, 15, 45],
+                            textColor: [255, 195, 15],
+                            fontStyle: 'bold',
+                            halign: 'center',
+                            fontSize: 8.5
+                        },
+                        styles: {
+                            font: 'helvetica',
+                            fontSize: 8,
+                            cellPadding: 2.2,
+                            valign: 'middle'
+                        },
+                        columnStyles: {
+                            0: { cellWidth: 8, halign: 'center' },
+                            1: { cellWidth: 'auto' },
+                            2: { cellWidth: 10, halign: 'center', fontStyle: 'bold' },
+                            3: { cellWidth: 10, halign: 'center', fontStyle: 'bold' },
+                            4: { cellWidth: 10, halign: 'center', fontStyle: 'bold' },
+                            5: { cellWidth: 10, halign: 'center', fontStyle: 'bold' },
+                            6: { cellWidth: 10, halign: 'center', fontStyle: 'bold' },
+                            7: { cellWidth: 12, halign: 'center' }
+                        },
+                        margin: { left: 14, right: 14 }
+                    });
+                }
+
+                const finalY = (doc.lastAutoTable && doc.lastAutoTable.finalY) ? doc.lastAutoTable.finalY : 240;
+
+                // Keterangan Skala
+                doc.setFont("helvetica", "italic");
+                doc.setFontSize(7.5);
+                doc.setTextColor(71, 85, 105);
+                doc.text("Keterangan: STS = Sangat Tidak Setuju (1); TS = Tidak Setuju (2); CS = Cukup Setuju (3); S = Setuju (4); SS = Sangat Setuju (5).", 14, finalY + 5);
+
+                // Kolom Tanda Tangan
+                const signY = finalY + 14;
+                if (signY < 275) {
+                    doc.setFont("helvetica", "normal");
+                    doc.setFontSize(8.5);
+                    doc.setTextColor(15, 15, 45);
+
+                    doc.text("Mengetahui,", 25, signY);
+                    doc.text("Guru PJOK", 25, signY + 5);
+                    doc.text("( ................................................. )", 25, signY + 22);
+
+                    doc.text("Siswa yang Bersangkutan,", 130, signY);
+                    doc.text(data.nama, 130, signY + 22);
+                }
+
+                // Nama berkas download dengan timestamp unik
+                const safeName = data.nama.replace(/[^a-zA-Z0-9_-]/g, '_');
+                const fileName = `Umpan_Balik_Efikasi_Diri_${safeName}_${ts}.pdf`;
+
+                // Memanggil jembatan WebView ke Kotlin / browser
+                downloadPdfSafe(doc, fileName);
+                return { success: true, fileName: fileName };
+            } catch (error) {
+                // Menangkap error jika gagal merakit PDF
+                alert("Gagal membuat dokumen PDF: " + error.message);
+                return null;
+            }
         }
 
         // ==================== PENGATURAN APLIKASI ====================
