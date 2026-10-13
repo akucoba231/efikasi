@@ -1174,6 +1174,10 @@
         .pointer {
             cursor: pointer;
         }
+        .text-wrap {
+            word-break: break-word;
+            white-space: normal;
+        }
     </style>
 </head>
 <body>
@@ -1595,10 +1599,26 @@
                 <p class="app-modal-message">
                     Formulir sudah disimpan dalam file, silakan periksa folder <strong>"Downloads"</strong>.
                 </p>
-                <div class="app-modal-file-badge">
+                <div class="app-modal-file-badge text-wrap">
                     <i class="fas fa-file-pdf"></i> <span id="modal-feedback-filename">Umpan_Balik_Efikasi_Diri.pdf</span>
                 </div>
                 <button type="button" class="btn-modal-ok" onclick="tutupModalFeedbackSukses()">
+                    <i class="fas fa-check-circle"></i> OK, Mengerti
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal Alert dan Warning  -->
+        <div id="modal-feedback-warning" class="app-modal-overlay">
+            <div class="app-modal-card animate__animated animate__zoomIn">
+                <div class="app-modal-icon-wrapper">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <h3 class="app-modal-title">Perhatian!</h3>
+                <p class="app-modal-message text-wrap" id="message-warning">
+                    
+                </p>
+                <button type="button" class="btn-modal-ok" onclick="tutupModalFeedbackWarning()">
                     <i class="fas fa-check-circle"></i> OK, Mengerti
                 </button>
             </div>
@@ -2100,7 +2120,7 @@
                     }
                 }
                 if (!chosen) {
-                    tampilkanModalFeedbackSukses(`Pernyataan nomor ${i + 1} belum dijawab. Harap pilih salah satu opsi (STS, TS, CS, S, SS).`, true);
+                    tampilkanModal(`Pernyataan nomor ${i + 1} belum dijawab. Harap pilih salah satu opsi (STS, TS, CS, S, SS).`);
                     const el = document.getElementById(`item_statement_${i}`);
                     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     return;
@@ -2144,8 +2164,8 @@
             }
         }
 
-        let toggle = false
-        function tampilkanModalFeedbackSukses(fileName, jangan = false) {
+        
+        function tampilkanModalFeedbackSukses(fileName) {
             const modal = document.getElementById('modal-feedback-sukses');
             const fileLabel = document.getElementById('modal-feedback-filename');
             if (fileLabel && fileName) {
@@ -2154,18 +2174,27 @@
             if (modal) {
                 modal.classList.add('active');
             }
-            toggle = jangan;
+            
+        }
+
+        function tampilkanModal(str) {
+            const modal = document.getElementById('modal-feedback-warning');
+            const warningText = document.getElementById('message-warning');
+            modal.classList.add('active')
+            warningText.textContent = str;
+        }
+
+        function tutupModalFeedbackWarning() {
+            const modal = document.getElementById('modal-feedback-warning');
+            if (modal) {
+                modal.classList.remove('active');
+            }
         }
 
         function tutupModalFeedbackSukses() {
             const modal = document.getElementById('modal-feedback-sukses');
             if (modal) {
                 modal.classList.remove('active');
-            }
-
-            if(toggle = true){
-                toggle = false;
-                return;
             }
 
             // Kembali ke halaman detail game sebelumnya setelah modal ditutup
