@@ -4,7 +4,8 @@ let _mudah = [
   {
     "id_permainan": "M001",
     "nama_permainan": "Adu cepat mengambil botol",
-    "level": "Mudah",
+    "level": level[0],
+    "efikasi": "Siswa diyakinkan bahwa dirinya mampu mengambil keputusan dan bertindak cepat sesuai instruksi. Ketika berhasil mendapatkan botol, siswa diajak menyadari bahwa keberhasilan diperoleh melalui konsentrasi, keberanian, dan kecepatan merespons.",
     "peraturan": [
       "Dimainkan oleh 2 tim",
       "Masing-masing tim terdiri dari 4-8 orang",
@@ -38,7 +39,8 @@ let _mudah = [
   {
     "id_permainan": "M002",
     "nama_permainan": "Balap Botol",
-    "level": "Mudah",
+    "level": level[0],
+    "efikasi": "Siswa didorong untuk yakin bahwa dirinya mampu menjaga keseimbangan dan menyelesaikan lintasan melalui usaha bertahap. Ketika botol terjatuh, siswa belajar bahwa kesalahan bukan tanda ketidakmampuan, melainkan kesempatan untuk mencoba kembali.",
     "peraturan": [
       "Dimainkan oleh 2-4 kelompok",
       "Masing masing kelompok terdiri dari 4-5 orang",
@@ -69,7 +71,8 @@ let _mudah = [
   {
     "id_permainan": "M003",
     "nama_permainan": "Balap gendong teman",
-    "level": "Mudah",
+    "level": level[0],
+    "efikasi": "Siswa membangun keyakinan terhadap kemampuannya menyelesaikan tugas bersama teman. Pergantian peran mengajarkan bahwa setiap anggota memiliki kemampuan dan tanggung jawab yang berkontribusi terhadap keberhasilan kelompok.",
     "peraturan": [
       "Dimainkan oleh 2 tim atau lebih",
       "Masing-masing tim terdiri dari 5-7 orang",
@@ -101,7 +104,8 @@ let _mudah = [
   {
     "id_permainan": "M004",
     "nama_permainan": "Ekor naga",
-    "level": "Mudah",
+    "level": level[0],
+    "efikasi": "Siswa dilatih untuk percaya terhadap kemampuan dirinya dalam mempertahankan posisi, menyusun strategi, dan mengikuti koordinasi kelompok. Siswa juga belajar bahwa keberhasilan tidak hanya ditentukan oleh kemampuan individu, tetapi juga kerja sama tim.",
     "peraturan": [
       "Dimainkan oleh 2 tim",
       "Masing-masing tim terdiri dari 5-10 orang",
@@ -135,7 +139,8 @@ let _mudah = [
   {
     "id_permainan": "M005",
     "nama_permainan": "Jatuh bangun botol",
-    "level": "Mudah",
+    "level": level[0],
+    "efikasi": "Siswa membangun keyakinan bahwa dirinya mampu beradaptasi dengan perubahan situasi permainan. Pergantian tugas menjatuhkan dan menegakkan botol membantu siswa berlatih mengambil keputusan, mempertahankan fokus, dan tidak mudah menyerah ketika strategi belum berhasil.",
     "peraturan": [
       "Dimainkan oleh 2 tim",
       "Masing-masing itm terdiri dari 2-4 orang",
@@ -169,7 +174,8 @@ let _mudah = [
   {
     "id_permainan": "M006",
     "nama_permainan": "Lempar Angka",
-    "level": "Mudah",
+    "level": level[0],
+    "efikasi": "Siswa didorong untuk yakin terhadap kemampuan mengarahkan lemparan dan mencapai target. Setiap lemparan menjadi pengalaman untuk mengenali kemampuan diri, mengevaluasi hasil, dan memperbaiki ketepatan pada kesempatan berikutnya.",
     "peraturan": [
       "Di mainkan oleh 2 tim atau lebih",
       "Masing-masing tim terdiri dari 4-7 orang",
@@ -201,7 +207,8 @@ let _mudah = [
   {
     "id_permainan": "M007",
     "nama_permainan": "Lompat angka",
-    "level": "Mudah",
+    "level": level[0],
+    "efikasi": "Siswa diajak mengenali kemampuan melompat dan berani menetapkan target sesuai kemampuannya. Hasil lompatan digunakan sebagai pengalaman belajar untuk meningkatkan keyakinan diri, bukan sebagai dasar untuk membandingkan kemampuan dengan teman.",
     "peraturan": [
       "Dimainkan oleh 2 tim atau lebih",
       "Masing-masing tim terdiri dari 4-6 orang atau lebih",
@@ -238,7 +245,8 @@ let _mudah = [
   {
     "id_permainan": "M008",
     "nama_permainan": "Rebut bola",
-    "level": "Mudah",
+    "level": level[0],
+    "efikasi": "Siswa dilatih untuk percaya pada kemampuannya berkonsentrasi, merespons aba-aba, dan mengambil keputusan secara cepat. Siswa juga belajar mengendalikan ketegangan saat berhadapan dengan lawan dan menerima hasil permainan secara positif.",
     "peraturan": [
       "Dimainkan oleh 2 tim",
       "Masing-masing tim terdiri dari 4-7 orang",
@@ -274,7 +282,8 @@ let _sedang = [
   {
     "id_permainan": "S001",
     "nama_permainan": "Adu cepat memindahkan botol",
-    "level": "Sedang",
+    "level": level[1],
+    "efikasi": "Siswa diperkuat keyakinannya bahwa dirinya mampu menyelesaikan tugas dalam batas waktu melalui kecepatan, ketepatan, dan strategi. Siswa belajar bahwa keberhasilan dapat dicapai melalui kontribusi setiap anggota dan evaluasi strategi kelompok.",
     "peraturan": [
       "Dimainkan oleh 4 tim",
       "Masing-masing tim terdiri dari 3-5 orang",
@@ -314,7 +323,8 @@ let _sedang = [
   {
     "id_permainan": "S002",
     "nama_permainan": "Cermin komando",
-    "level": "Sedang",
+    "level": level[1],
+    "efikasi": "Siswa didorong untuk yakin terhadap kemampuannya memahami instruksi, mengendalikan gerakan, dan mempertahankan konsentrasi. Ketika melakukan kesalahan, siswa diajak memahami bahwa ketelitian dan latihan dapat membantu meningkatkan kemampuannya.",
     "peraturan": [
       "Dimainkan oleh 3 tim atau lebih",
       "Masing-masing tim terdiri dari 4-8 orang",
@@ -345,7 +355,8 @@ let _sedang = [
   {
     "id_permainan": "S003",
     "nama_permainan": "Pijakan setapak",
-    "level": "Sedang",
+    "level": level[1],
+    "efikasi": "Siswa membangun keyakinan bahwa dirinya mampu menyelesaikan lintasan melalui perencanaan langkah, keseimbangan, dan kehati-hatian. Ketika langkah belum tepat, siswa belajar memperbaiki strategi dan mencoba kembali sampai berhasil.",
     "peraturan": [
       "Dimainkan oleh 2 tim atau lebih",
       "Masing-masing tim terdiri dari 3-5 orang",
@@ -379,7 +390,8 @@ let _sedang = [
   {
     "id_permainan": "S004",
     "nama_permainan": "Tebak warna",
-    "level": "Sedang",
+    "level": level[1],
+    "efikasi": "Siswa dilatih untuk percaya terhadap kemampuan mengingat, mengamati, dan mengambil keputusan. Siswa juga belajar bahwa keberhasilan dapat meningkat melalui konsentrasi, strategi mengingat, dan komunikasi dengan anggota kelompok.",
     "peraturan": [
       "Dimainkan oleh 2 atau lebih tim",
       "Masing-masing tim terdiri dari 4-6 orang",
@@ -415,7 +427,8 @@ let _sulit = [
   {
     "id_permainan": "SL001",
     "nama_permainan": "Balap lompat",
-    "level": "Sulit",
+    "level": level[2],
+    "efikasi": "Siswa diperkuat keyakinannya untuk menghadapi tantangan gerak yang membutuhkan koordinasi dan kerja sama. Melalui latihan bertahap, siswa belajar bahwa kemampuan dapat berkembang dan keberhasilan memerlukan kepercayaan, komunikasi, serta perhatian terhadap keselamatan teman.",
     "peraturan": [
       "Dimainkan oleh 2 tim atau lebih",
       "Masing-masing tim terdiri dari 3 orang",
@@ -445,7 +458,8 @@ let _sulit = [
   {
     "id_permainan": "SL002",
     "nama_permainan": "Balap pantul bola",
-    "level": "Sulit",
+    "level": level[2],
+    "efikasi": "Siswa didorong untuk yakin bahwa dirinya mampu mengoordinasikan dua aktivitas secara bersamaan. Kesulitan dalam memantulkan bola dan memindahkan botol menjadi kesempatan untuk melatih konsentrasi, kesabaran, dan ketekunan dalam memperbaiki gerakan.",
     "peraturan": [
       "Dimainkan oleh 2 tim atau lebih",
       "Masing-masing tim terdiri dari 3-5 orang atau lebih",
@@ -481,7 +495,8 @@ let _sulit = [
   {
     "id_permainan": "SL003",
     "nama_permainan": "Dam Dam 3x3",
-    "level": "Sulit",
+    "level": level[2],
+    "efikasi": "Siswa membangun keyakinan terhadap kemampuan menyusun strategi, mengambil keputusan, dan memimpin kelompok. Evaluasi setelah permainan membantu siswa mengenali faktor keberhasilan maupun kesalahan serta mengembangkan strategi yang lebih baik pada permainan berikutnya.",
     "peraturan": [
       "Dimainkan oleh 2 tim",
       "Masing-masing tim terdiri dari 3 orang",
