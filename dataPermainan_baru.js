@@ -28,7 +28,10 @@ let _mudah = [
       "Botol (bekas air mineral)/bola kecil Ikertas bekas)",
       "Cones piringan/kerucut"
     ],
-    "contoh_video": "https://youtu.be/cPCESYMc9ew?si=ouNg67ILXW4-Nuja",
+    "contoh_video": [
+      "https://youtu.be/z47YC_VkKkw",
+      "https://youtube.com/watch?v=TVQnLgsAmv8"
+    ],
     "format_diskusi": {
       "tipe": "berkas_unduhan",
       "nama_file": "",
@@ -60,7 +63,10 @@ let _mudah = [
       "Botol (bekas air mineral)/potongan peralon/Batangan kayu",
       "Cones  piringan/kerucut"
     ],
-    "contoh_video": "https://youtu.be/rdf-XzS6nZQ?si=BascEihRjO_jnt_V",
+    "contoh_video": [
+      "https://youtu.be/LsSS7TILGCA",
+      "https://youtube.com/watch?v=9WANY2tt0XI"
+    ],
     "format_diskusi": {
       "tipe": "berkas_unduhan",
       "nama_file": "",
@@ -93,7 +99,10 @@ let _mudah = [
     "peralatan": [
       "Cones piringan/kerucut"
     ],
-    "contoh_video": "https://youtu.be/wJLCVLma1pU?si=Bn92_PkOztklfgQf",
+    "contoh_video": [
+      "https://youtu.be/c3Lp-pIQ1Ns",
+      "https://youtube.com/watch?v=bp8SMp-nOOk"
+    ],
     "format_diskusi": {
       "tipe": "berkas_unduhan",
       "nama_file": "",
@@ -312,7 +321,10 @@ let _sedang = [
       "Tali rapia (bulat)",
       "Cones  piringan/kerucut"
     ],
-    "contoh_video": "https://youtu.be/HwDCYSTBIWU?si=HApE-7ToJVq3nfs-",
+    "contoh_video": [
+      "https://youtu.be/KGe7q9BZ6NE",
+      "https://youtube.com/watch?v=qiFZMRE3Mhw"
+    ],
     "format_diskusi": {
       "tipe": "berkas_unduhan",
       "nama_file": "",
@@ -447,7 +459,10 @@ let _sulit = [
     "peralatan": [
       "Cones piringan/kerucut"
     ],
-    "contoh_video": "https://youtu.be/R86x9LIQ_60",
+    "contoh_video": [
+      "https://youtu.be/XmdMUVRHQOk",
+      "https://youtube.com/watch?v=VmE1wPi197w"
+    ],
     "format_diskusi": {
       "tipe": "berkas_unduhan",
       "nama_file": "",
