@@ -1454,7 +1454,16 @@
                                 <ul>
                                     <li><b>Pemutar Video</b>: Menampilkan peragaan tata cara permainan secara visual (jika tersedia).</li>
                                     <li><b>Informasi Lengkap</b>: Ketuk <i>dropdown</i> (Peraturan, Cara Bermain, Alat yang Dibutuhkan) untuk membaca panduan teks secara rinci.</li>
-                                    <li><b>Format Diskusi</b>: Ketuk tombol hijau di bagian paling bawah untuk mengunduh lembar aktivitas dan diskusi.</li>
+                                    <li><b>Form Umpan Balik</b>: Formulir untuk melihat perkembangan efikasi diri siswa. Lakukan pengisian form baik secara fisik (unduh form) dan melalui aplikasi (isi form) menggunakan tombol yang tersedia.</li>
+                                    <li><b>Form Umpan Balik</b>: Isi umpan balik melalui aplikasi akan menghasilkan secara otomatis kategori efikasi diri berdasarkan total skor (100% = 50):
+                                    <ul>
+                                        <li>Sangat Tinggi (86% - 100%)</li>
+                                        <li>Tinggi (70% - 84%)</li> 
+                                        <li>Sedang (54% - 68%)</li>
+                                        <li>Rendah (38% - 52%)</li>
+                                        <li>Sangat Rendah (20% - 36%)</li>
+                                    </ul>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -2300,16 +2309,21 @@
                 doc.setFontSize(8.5);
                 doc.setTextColor(30, 41, 59);
 
-                doc.text(`Nama         : ${data.nama}`, 14, 38);
-                doc.text(`Kelas        : ${data.kelas}`, 14, 43);
-                doc.text(`Sekolah      : ${data.sekolah}`, 14, 48);
+                doc.text(`Nama          : ${data.nama}`, 14, 38);
+                doc.text(`Kelas         : ${data.kelas}`, 14, 43);
+                doc.text(`Sekolah       : ${data.sekolah}`, 14, 48);
 
                 doc.text(`Hari, Tanggal : ${data.tanggal}`, 115, 38);
                 doc.text(`Permainan     : ${data.gameTitle}`, 115, 43);
+                
 
                 // Baris Tabel AutoTable
                 const totalSkor = data.answers.reduce((acc, cur) => acc + cur.score, 0);
                 const rataSkor = (totalSkor / data.answers.length).toFixed(1);
+
+                let nilai_bantu = cekKategori(totalSkor);
+                // tambahan untuk kategori nilai
+                doc.text(`Kategori      : ${nilai_bantu}`, 115, 48);
 
                 const tableBody = data.answers.map(item => [
                     String(item.no),
@@ -2348,7 +2362,7 @@
                             valign: 'middle'
                         },
                         columnStyles: {
-                            0: { cellWidth: 8, halign: 'center' },
+                            0: { cellWidth: 10, halign: 'center' },
                             1: { cellWidth: 'auto' },
                             2: { cellWidth: 10, halign: 'center', fontStyle: 'bold' },
                             3: { cellWidth: 10, halign: 'center', fontStyle: 'bold' },
@@ -2569,12 +2583,33 @@
         // Tambahkan footer kredensial ke semua screen kecuali splash-screen
         const footerHTML = `
             <div class="app-footer animate__animated animate__fadeIn">
-                &copy; 2026 Permainan Efikasi Diri - <strong>Irham Shagira, S. Pd</strong>
+                &copy; 2026 Permainan Efikasi Diri - <strong>Irham Shaghira, S. Pd</strong>
             </div>
         `;
         document.querySelectorAll('.screen:not(#splash-screen)').forEach(screen => {
             screen.insertAdjacentHTML('beforeend', footerHTML);
         });
+
+        function cekKategori(nilai){
+            if(nilai > 0){
+                return "Sangat Rendah";
+            }
+            else if(nilai > 18){
+                return "Rendah";
+            }
+            else if(nilai > 26){
+                return "Sedang";
+            }
+            else if(nilai > 34){
+                return "Tinggi";
+            }
+            else if(nilai > 42){
+                return "Sangat Tinggi";
+            }
+            else {
+                return "Tidak Valid";
+            }
+        }
     </script>
 </body>
 </html>
