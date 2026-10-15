@@ -2590,7 +2590,7 @@
             screen.insertAdjacentHTML('beforeend', footerHTML);
         });
 
-        function cekKategori(nilai){
+       /* function cekKategori(nilai){
             if(nilai > 0){
                 return "Sangat Rendah";
             }
@@ -2609,7 +2609,23 @@
             else {
                 return "Tidak Valid";
             }
-        }
+        }*/
+		function cekKategori(nilai) {
+    if (nilai > 42) {
+        return "Sangat Tinggi";
+    } else if (nilai > 34) {
+        return "Tinggi";
+    } else if (nilai > 26) {
+        return "Sedang";
+    } else if (nilai > 18) {
+        return "Rendah";
+    } else if (nilai > 0) {
+        return "Sangat Rendah";
+    } else {
+        return "Tidak Valid";
+    }
+		}
+		console.log("versi 5");
     </script>
 </body>
 </html>
